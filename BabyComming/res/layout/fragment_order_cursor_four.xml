@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    
+    <TextView 
+        android:id="@+id/dingdan_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="你还没有已过期的优惠劵哦"/>
+
+    <GridView
+        android:id="@+id/dingdan_four_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="2"
+        android:divider="#00000000"
+        android:dividerHeight="5dp" >
+    </GridView>
+    
+</LinearLayout>

@@ -1,0 +1,25 @@
+package com.aohuan.utils.request;
+
+public class RequestBaseMapZGQ {
+
+	/** 广告 **/
+	public static BaseMap getGuanggao() {
+		BaseMap bm = new BaseMap();
+		return bm;
+	}
+	/** 月嫂列表 **/
+	public static BaseMap getYuesaoList(String grade, String city_id, String price) {
+		BaseMap bm = new BaseMap();
+		bm.put("grade", grade);
+		bm.put("city_id", city_id);
+		bm.put("price", price);
+		return bm;
+	}
+	/** 月嫂详情页 **/
+	public static BaseMap getYuesaoDetails(String ueserid, String yuesao_id) {
+		BaseMap bm = new BaseMap();
+		bm.put("ueserid", ueserid);
+		bm.put("yuesao_id", yuesao_id);
+		return bm;
+	}
+}

@@ -1,0 +1,180 @@
+package com.aohuan.detail.first.activity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.text.format.DateUtils;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.base.BaseActiviry;
+import com.aohuan.bean.StoreIntroDetailBean;
+import com.aohuan.bean.StoreIntroDetailBean.GoodsList2;
+import com.aohuan.detail.mine.LoginActivity;
+import com.aohuan.utils.adapter.CommonAdapter;
+import com.aohuan.utils.adapter.ImageLoad;
+import com.aohuan.utils.adapter.ViewHolder;
+import com.aohuan.utils.http.EFaceType;
+import com.aohuan.utils.http.GetDataAsync;
+import com.aohuan.utils.http.IUpdateUI;
+import com.aohuan.utils.propriety.LoginHelper;
+import com.aohuan.utils.request.RequestBaseMap;
+import com.aohuan.view.NoScrollListView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+@ContentView(R.layout.activity_store_detail)
+public class StoreIntroActivity extends BaseActiviry implements OnItemClickListener, OnRefreshListener<ScrollView> {
+
+	@ViewInject(R.id.scroll)
+	private PullToRefreshScrollView mScrollView;
+	
+	@ViewInject(R.id.strore_detail_grid)
+	private NoScrollListView mGridView;
+	@ViewInject(R.id.comment_rela)
+	private RelativeLayout mCommentLayout;
+	private List<GoodsList2> mList;
+	
+	@ViewInject(R.id.title)
+	private TextView mTitleView;
+	private CommonAdapter<GoodsList2> mAdapter;
+		
+	private String partner_id;
+	
+	@ViewInject(R.id.store_image)
+	private ImageView mImageView;
+	@ViewInject(R.id.store_title)
+	private TextView mTextView;
+	@ViewInject(R.id.store_person_num)
+	private TextView mSaleNumTextView;
+	@ViewInject(R.id.sotre_intro_content)
+	private TextView mIntroTextView;
+	@ViewInject(R.id.sotre_address_content)
+	private TextView mAddressTextView;
+	@ViewInject(R.id.comment_num)
+	private TextView mCommentCountView;
+	@ViewInject(R.id.call_phone)
+	private ImageButton mPhoneView;
+	@ViewInject(R.id.store_bar)
+	private RatingBar mBar;
+	private StoreIntroDetailBean bean;
+	
+	private int page=1;
+
+	@Override
+	protected void onCreate(Bundle arg0) {
+		// TODO Auto-generated method stub
+		super.onCreate(arg0);
+		partner_id=getIntent().getStringExtra("id");
+		mList=new ArrayList<GoodsList2>();
+		mScrollView.setMode(Mode.PULL_FROM_END);
+		mScrollView.setOnRefreshListener(this);
+		
+		loadData();
+		
+		mTitleView.setText("商家介绍");
+					
+		mGridView.setOnItemClickListener(this);
+	}
+	private void loadData() {
+		GetDataAsync gs=new GetDataAsync(this, new IUpdateUI() {
+			@Override
+			public void updata(Object allData) {
+				// TODO Auto-generated method stub
+				if (allData !=null && allData instanceof StoreIntroDetailBean) {
+					bean = (StoreIntroDetailBean) allData;
+					setData();				
+					setAdapter();
+				}
+			}
+		}, false, RequestBaseMap.getStoreDetail(partner_id,page+""));
+		gs.execute(EFaceType.URL_STORE_DETAIL);
+	}
+	@OnClick({R.id.comment_rela,R.id.back,R.id.call_phone})
+	public void onClick(View v){
+		switch (v.getId()) {
+		case R.id.comment_rela:
+			Intent intent=new Intent(this, CommentActivity.class);
+			intent.putExtra("id", bean.getId());
+			startActivity(intent);
+			break;		
+		case R.id.back:
+			finish();			
+			break;
+		case R.id.call_phone:
+			Intent intent2=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+bean.getPhone()));
+			startActivity(intent2);
+			break;
+		}
+	}
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		// TODO Auto-generated method stub
+		System.out.println("--po---"+arg2);
+		if (LoginHelper.getUser(StoreIntroActivity.this)!=null) {
+			Intent intent=new Intent(this, TaoCanDetailActivity.class);
+			intent.putExtra("team_id", mList.get(arg2).getId());
+			startActivity(intent);
+		}else {
+			Intent intent=new Intent(StoreIntroActivity.this, LoginActivity.class);
+			startActivity(intent);
+		}	
+	}
+	private void setData() {
+		ImageLoad.loadImage(mImageView, bean.getImage(), StoreIntroActivity.this);
+		mTextView.setText(bean.getTitle());
+		mSaleNumTextView.setText(bean.getCount());
+		mIntroTextView.setText(bean.getOther());
+		mAddressTextView.setText(bean.getAddress());
+		mCommentCountView.setText("("+bean.getPinglun_number()+")");
+		mList.addAll(bean.getTeam());
+		mBar.setRating(Float.parseFloat(bean.getPingfen()));
+	}
+	private void setAdapter() {
+		mAdapter=new CommonAdapter<GoodsList2>(StoreIntroActivity.this, mList,
+				R.layout.item_photo_goods) {
+			
+			@Override
+			public void convert(ViewHolder helper, GoodsList2 item) {
+				// TODO Auto-generated method stub
+				helper.setText(R.id.photo_goods_title,
+						item.getTitle());
+				helper.setText(R.id.photo_goods_content,
+						item.getProduct());
+				helper.setText(R.id.photo_goods_price, "￥"
+						+ item.getTeam_price());
+				System.out.println("---"+item.getImage());
+				helper.setImageByUrl(R.id.photo_goods_image,
+				 item.getImage(), StoreIntroActivity.this);
+			}
+		};
+		mGridView.setAdapter(mAdapter);
+		mScrollView.onRefreshComplete();
+	}
+	@Override
+	public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+		// TODO Auto-generated method stub
+		String label = DateUtils.formatDateTime(this, System.currentTimeMillis(),  
+                DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);  
+        refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);  
+		
+        page++;
+        loadData();
+	}
+}

@@ -1,0 +1,56 @@
+package com.aohuan.detail.order.adapter;
+
+import java.util.ArrayList;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.utils.adapter.ViewHolder;
+
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+
+public class ConsumeDetailAdapter extends BaseAdapter {
+	private Context mContext;
+	private ArrayList<DetailBean> mlist;
+	
+	public ConsumeDetailAdapter(Context mContext, ArrayList<DetailBean> mDetailBeanList) {
+		super();
+		this.mContext = mContext;
+		this.mlist = mDetailBeanList;
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return 2;
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		final ViewHolder viewHolder = ViewHolder.get(mContext,
+				convertView, parent, R.layout.item_order_consume_num,
+				position);
+		viewHolder.setText(R.id.tv_consume_num, "编号01：221489267194"+"_"+getCount());
+		return viewHolder.getConvertView();
+	}
+	
+	
+	class DetailBean{
+		String mType;
+		String mString;
+	}
+
+}

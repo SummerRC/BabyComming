@@ -1,0 +1,28 @@
+package com.aohuan.utils.http;
+
+
+/**
+ * 
+ */
+public enum EFaceType {
+
+	URL_1_1_ACCOUNT_REG(UrlConstants.URL + "App/webapp.php?action=login"),
+	/**注册**/
+	URL_REGISTER(UrlConstants.URL+"App/webapp.php?action=reg2"),
+	
+	;
+	
+	
+	
+	
+	private String urlAll;
+
+	private EFaceType(String url) {
+		this.urlAll = url;
+	}
+
+	public String getUrlAll() {
+		return urlAll;
+	}
+}
+

@@ -1,0 +1,153 @@
+package com.aohuan.detail.first.activity;
+
+import java.util.ArrayList;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.base.BaseActiviry;
+import com.aohuan.detail.first.fragment.PhotoGraphGoodsSetFragment;
+import com.aohuan.detail.first.fragment.PhotoGraphMerchantFragment;
+import com.aohuan.utils.SelectPlayingPageAdapter;
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+/**
+ * 摄影
+ * @author Administrator
+ *
+ */
+@ContentView(R.layout.activity_photography)
+public class PhotoGraphyActivity extends BaseActiviry implements OnPageChangeListener, OnCheckedChangeListener {
+	@ViewInject(R.id.select_movie_viewpager)
+	private ViewPager viewPager;	
+	@ViewInject(R.id.palying)
+	private RadioButton mStoreButton;
+	@ViewInject(R.id.will_paly)
+	private RadioButton mGoodsButton;
+	@ViewInject(R.id.group)
+	private RadioGroup mGroup;
+	@ViewInject(R.id.back)
+	private ImageButton mBackButton;
+	private SelectPlayingPageAdapter pageAdapter;
+	private ArrayList<Fragment> fragments;
+	@ViewInject(R.id.cursor)
+	private TextView imgchange;
+	
+	private int type;
+	@Override
+	protected void onCreate(Bundle arg0) {
+		// TODO Auto-generated method stub
+		super.onCreate(arg0);	
+		
+		type=getIntent().getIntExtra("type", 0);
+		
+		viewPager.setOnPageChangeListener(this);
+		
+		mGroup.setOnCheckedChangeListener(this);
+		fragments =new ArrayList<Fragment>();
+		
+		Fragment fragment=new PhotoGraphMerchantFragment();
+		Bundle bundle=new Bundle();
+		bundle.putInt("type", type);
+		fragment.setArguments(bundle);
+		fragments.add(fragment);
+		
+		Fragment fragment1=new PhotoGraphGoodsSetFragment();
+		 bundle=new Bundle();
+		bundle.putInt("type", type);
+		fragment1.setArguments(bundle);
+		fragments.add(fragment1);
+		
+		((RadioButton)mGroup.getChildAt(0)).setChecked(true);
+		pageAdapter=new SelectPlayingPageAdapter(getSupportFragmentManager(), fragments);
+		viewPager.setAdapter(pageAdapter);
+		//viewPager.setPageTransformer(true, new CubeTransformer());
+	}
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+		// TODO Auto-generated method stub
+				
+	}
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+		// TODO Auto-generated method stub
+		if (arg0==0) {
+			if (arg1<0.99) {
+				imgchange.setX(imgchange.getWidth()*arg1);
+			}
+		}
+	}
+	@Override
+	public void onPageSelected(int arg0) {
+		// TODO Auto-generated method stub
+		switch (arg0) {
+		case 0:
+			
+			imgchange.setBackgroundDrawable(getResources().getDrawable(R.drawable.cursor));
+			
+//			mStoreButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.cursor));
+//			mGoodsButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.cursor3));
+			break;
+
+		case 1:
+						
+			imgchange.setBackgroundDrawable(getResources().getDrawable(R.drawable.corsor2));
+//			
+//			mStoreButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.cursor4));
+//			mGoodsButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.corsor2));
+			break;
+		}		
+		((RadioButton)mGroup.getChildAt(arg0)).setChecked(true);
+	}
+	@OnClick({R.id.palying,R.id.will_paly,R.id.back})
+	public void onClick(View v){
+		switch (v.getId()) {
+		case R.id.palying:
+			viewPager.setCurrentItem(0);
+			break;
+
+		case R.id.will_paly:
+			viewPager.setCurrentItem(1);
+			break;
+		case R.id.back:
+			finish();			
+			break;
+		}
+	}
+	@Override
+	public void onCheckedChanged(RadioGroup group, int checkedId) {
+		// TODO Auto-generated method stub
+		int childCount=group.getChildCount();
+		int checkedIndex=0;
+		RadioButton btn=null;
+		for(int i=0;i<childCount;i++){
+			btn=(RadioButton) group.getChildAt(i);
+			if (btn.isChecked()) {
+				checkedIndex=i;
+				break;
+			}		
+		}
+		switch (checkedIndex) {
+		case 0:
+			mStoreButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.cursor));
+			mGoodsButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.cursor3));
+			break;
+
+		case 1:
+			mStoreButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.cursor4));
+			mGoodsButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.corsor2));
+			break;
+		}
+	}
+}

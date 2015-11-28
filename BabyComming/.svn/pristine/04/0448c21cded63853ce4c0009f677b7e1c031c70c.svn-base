@@ -1,0 +1,320 @@
+package com.aohuan.fragment;
+
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.bean.CodeMessageBean;
+import com.aohuan.bean.RefreshUserInfoBean;
+import com.aohuan.bean.UserBean;
+import com.aohuan.bean.UserBean.User;
+import com.aohuan.detail.mine.AlreadyReserveNurseMaidActivity;
+import com.aohuan.detail.mine.ChangePasswordActivity;
+import com.aohuan.detail.mine.LoginActivity;
+import com.aohuan.detail.mine.MyCollectGoodsActivity;
+import com.aohuan.detail.mine.MyCollectionActivity;
+import com.aohuan.detail.mine.MyFocusNurseMaidActivity;
+import com.aohuan.detail.mine.SetPasswordActivity;
+import com.aohuan.detail.order.OrderDetailEvaluateActivity;
+import com.aohuan.utils.bitmap.netdownlodeyuanimage.ImageLoad;
+import com.aohuan.utils.bitmap.yuanimage.BitmapUtils;
+import com.aohuan.utils.bitmap.yuanimage.CircularImageView;
+import com.aohuan.utils.common.LogAh;
+import com.aohuan.utils.dialog.CallPhoneUtils;
+import com.aohuan.utils.http.EFaceTypeZGQ;
+import com.aohuan.utils.http.GetDataAsyncZGQ;
+import com.aohuan.utils.http.IUpdateUI;
+import com.aohuan.utils.propriety.LoginHelper;
+import com.aohuan.utils.request.RequestBaseMapZGQ;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+public class MineFragment extends Fragment {
+
+	@ViewInject(R.id.btn_mine_login)
+	private Button mBtnLogin;
+
+	@ViewInject(R.id.tv_mine_username)
+	private TextView mUsername;
+
+	@ViewInject(R.id.ll_my_shoucang)
+	private RelativeLayout mRlShoucang;
+
+	@ViewInject(R.id.ll_my_yuesao)
+	private RelativeLayout mRlYuesao;
+
+	@ViewInject(R.id.ll_my_shangpin)
+	private RelativeLayout mRlShangpin;
+
+	@ViewInject(R.id.ll_password)
+	private RelativeLayout mRlPassword;
+
+	@ViewInject(R.id.ll_change_pwd)
+	private RelativeLayout mRlChangePwd;
+
+	@ViewInject(R.id.ll_my_yuyue_yuesao)
+	private RelativeLayout mRlYyYuesao;
+
+	@ViewInject(R.id.iv_touxiang)
+	private ImageView mImageHeade;
+	@ViewInject(R.id.iv_circular_touxiang)
+	private CircularImageView mImageHeadeCircular;
+
+	/** mIntent */
+	private Intent mIntent;
+
+	private static final int REQUEST_CODE = 1;
+	private static final int RESULT_CODE = 0;
+	/** 修改头像实体类 */
+	private CodeMessageBean mCodeMessageBean;
+	/** 刷新用户信息实体类 */
+	private RefreshUserInfoBean mUserBean;
+	/** 用户信息实体类 */
+	private User mUser;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = null;
+		view = inflater.inflate(R.layout.fragmen_mine, container, false);
+		ViewUtils.inject(this, view);
+
+		return view;
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onActivityCreated(savedInstanceState);
+		mUser = LoginHelper.getUser(getActivity());
+	}
+
+	/**
+	 * 显示当前的头像
+	 */
+	private void initHeade(String image) {
+		// Log.e("TAG", "返回的头像：："+"jinlaile");
+		ImageLoad.loadImageHead(mImageHeade, image, getActivity());
+	}
+
+	/**
+	 * 调用系统相册
+	 */
+	private void getAvatar() {
+		Intent intent = new Intent(Intent.ACTION_PICK,
+				android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+		startActivityForResult(intent, 111);
+	}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		onActivityResult(1, 1, null);
+	}
+
+	@OnClick({ R.id.btn_mine_login, R.id.tv_mine_username, R.id.ll_my_shoucang,
+			R.id.ll_my_yuesao, R.id.ll_password, R.id.ll_change_pwd,
+			R.id.ll_my_shangpin, R.id.iv_touxiang, R.id.iv_circular_touxiang,
+			R.id.ll_my_yuyue_yuesao })
+	public void onRlClick(View v) {
+		switch (v.getId()) {
+		case R.id.iv_touxiang:
+			if (mUser == null) {
+				return;
+			}
+			getAvatar();
+			break;
+		case R.id.iv_circular_touxiang:
+			if (mUser == null) {
+				return;
+			}
+			getAvatar();
+			break;
+		case R.id.btn_mine_login:
+			mIntent = new Intent(getActivity(), LoginActivity.class);
+			// startActivity(mIntent);
+			startActivityForResult(mIntent, 1);
+			break;
+		case R.id.tv_mine_username:
+			break;
+		default:
+			doOpenActivity(v.getId());
+
+		}
+	}
+
+	private void doOpenActivity(int viewId) {
+		if (mUser == null) {
+			showUnLoginError();
+			return;
+		}
+		switch (viewId) {
+		case R.id.ll_my_shoucang:
+			mIntent = new Intent(getActivity(), MyCollectionActivity.class);
+			startActivity(mIntent);
+			break;
+		case R.id.ll_my_yuesao:
+			mIntent = new Intent(getActivity(), MyFocusNurseMaidActivity.class);
+			startActivity(mIntent);
+			break;
+		case R.id.ll_my_yuyue_yuesao:
+			mIntent = new Intent(getActivity(),
+					AlreadyReserveNurseMaidActivity.class);
+			startActivity(mIntent);
+			break;
+		case R.id.ll_my_shangpin:
+			mIntent = new Intent(getActivity(), MyCollectGoodsActivity.class);
+			startActivity(mIntent);
+			break;
+		case R.id.ll_password:
+			mIntent = new Intent(getActivity(), SetPasswordActivity.class);
+			startActivity(mIntent);
+			break;
+		case R.id.ll_change_pwd:
+			mIntent = new Intent(getActivity(), ChangePasswordActivity.class);
+			startActivity(mIntent);
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	private long exitTime;
+	public void showUnLoginError() {
+		if (System.currentTimeMillis() - exitTime > 2000) {
+			Toast.makeText(getActivity(), "登录以后才能进入！！", Toast.LENGTH_SHORT).show();
+			exitTime = System.currentTimeMillis();
+		}
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		// 如果没有登录， 则显示 【登录】按钮， 否则， 显示用户名：xxx
+		if (requestCode == REQUEST_CODE && resultCode == 1) {
+
+			User user = LoginHelper.getUser(getActivity());
+			if (user == null) {
+				mBtnLogin.setVisibility(View.VISIBLE);
+				mUsername.setVisibility(View.GONE);
+			} else {
+				mBtnLogin.setVisibility(View.GONE);
+				mUsername.setText(user.getUsername());
+				mUsername.setVisibility(View.VISIBLE);
+			}
+		}
+
+		if (resultCode == Activity.RESULT_OK && null != data) {
+			try {
+				mImageHeade.setVisibility(View.GONE);
+				mImageHeadeCircular.setVisibility(View.VISIBLE);
+				// 获得对应图片的路径
+				Uri selectedImage = data.getData();
+				String[] filePathColumns = { MediaStore.Images.Media.DATA };
+				Cursor c = getActivity().getContentResolver().query(
+						selectedImage, filePathColumns, null, null, null);
+				c.moveToFirst();
+				int columnIndex = c.getColumnIndex(filePathColumns[0]);
+				String picturePath = c.getString(columnIndex);
+				c.close();
+				// 通过路径得到压缩后的bitmap
+				Bitmap bitmap = BitmapUtils.convertToBitmap(picturePath, 200,
+						200);
+				ArrayList<Bitmap> bitmapList = new ArrayList<Bitmap>();
+				bitmapList.add(bitmap);
+				// 设置bitmap为头像
+				mImageHeadeCircular.setImageBitmaps(bitmapList);
+				String imageIOStr = BitmapUtils.sendPhoto(bitmap);
+				initUpdateHeade(imageIOStr);
+			} catch (Exception e) {
+				Toast.makeText(getActivity(), "设置头像出错，是否已经添加读写权限！！",
+						Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		mUser = LoginHelper.getUser(getActivity());
+		Log.e("TAG", "onStart()"+"");
+		if (mUser == null) {
+			initHeade("");
+			return;
+		}
+		initRefreshUserInfo();
+	}
+
+	private void initUpdateHeade(String imageIO) {
+		IUpdateUI ui = new IUpdateUI() {
+
+			@Override
+			public void updata(Object allData) {
+				// TODO Auto-generated method stub
+				if (allData == null) {
+					Toast.makeText(getActivity(), "网络不给力", Toast.LENGTH_SHORT)
+							.show();
+					return;
+				}
+				LogAh.e("修改图片：：" + allData.toString());
+				mCodeMessageBean = (CodeMessageBean) allData;
+				if (mCodeMessageBean.getCode().equals("0")) {
+					Toast.makeText(getActivity(),
+							mCodeMessageBean.getMessage(), Toast.LENGTH_SHORT)
+							.show();
+				} else if (mCodeMessageBean.getCode().equals("1")) {
+					Toast.makeText(getActivity(),
+							mCodeMessageBean.getMessage(), Toast.LENGTH_SHORT)
+							.show();
+				}
+			}
+		};
+		GetDataAsyncZGQ asyncZGQ = new GetDataAsyncZGQ(getActivity(), ui, true,
+				RequestBaseMapZGQ.getUpdateImage(mUser.getId(), imageIO));
+		asyncZGQ.execute(EFaceTypeZGQ.URL_UPDATE_IMAGE);
+	}
+
+	private void initRefreshUserInfo() {
+		IUpdateUI ui = new IUpdateUI() {
+
+			@Override
+			public void updata(Object allData) {
+				// TODO Auto-generated method stub
+				if (allData == null) {
+					Toast.makeText(getActivity(), "网络不给力", Toast.LENGTH_SHORT)
+							.show();
+					return;
+				}
+				LogAh.e("刷新用户信息：：" + allData.toString());
+				mUserBean = (RefreshUserInfoBean) allData;
+				LoginHelper.saveLogin(getActivity(), mUserBean.getId(),
+						mUserBean.getUsername(), mUserBean.getImage());
+				initHeade(mUserBean.getImage());
+			}
+		};
+		GetDataAsyncZGQ asyncZGQ = new GetDataAsyncZGQ(getActivity(), ui, true,
+				RequestBaseMapZGQ.getUpdateImage(mUser.getId()));
+		asyncZGQ.execute(EFaceTypeZGQ.URL_REFRESH_USERINFO);
+	}
+}

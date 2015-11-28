@@ -1,0 +1,54 @@
+package com.aohuan.utils.request;
+
+
+
+
+
+public class RequestBaseMap {
+//	/** 注册 **/
+//	public static BaseMap getRegister(String remark, String passWord,
+//			String phone) {
+//		BaseMap bm = new BaseMap();
+//		bm.put("smscode", remark);
+//		bm.put("password", passWord);
+//		bm.put("mobile", phone);
+//		return bm;
+//	}
+	
+	/**套餐详情**/
+	public static BaseMap getTaoCanDetail(String team_id){
+		BaseMap bm = new BaseMap();
+		bm.put("team_id", team_id);
+		return bm;
+	}
+	/**商家详情**/
+	public static BaseMap getStoreDetail(String partner_id){
+		BaseMap bm = new BaseMap();
+		bm.put("partner_id", partner_id);
+		return bm;
+	}
+	
+	public static BaseMap getCollect(String team_id,String userid){
+		BaseMap bm = new BaseMap();
+		bm.put("team_id", team_id);
+		bm.put("user_id", userid);
+		return bm;
+	}
+	
+	public static BaseMap getOrderId(String userid,String pay_id,String price,String mobile
+			,String address,String zipcode,String realname,String fara,String team_id,String quantity){
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", userid);
+		bm.put("pay_id", pay_id);
+		bm.put("price", price);
+		bm.put("mobile", mobile);
+		bm.put("address", address);
+		bm.put("zipcode", zipcode);
+		bm.put("realname", realname);
+		bm.put("fara", fara);
+		bm.put("team_id", team_id);
+		bm.put("quantity", quantity);
+		return bm;
+	}
+	
+}

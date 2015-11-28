@@ -1,0 +1,206 @@
+package com.aohuan.fragment;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.babycomming.StartPageActivity;
+import com.aohuan.bean.VersionBean;
+import com.aohuan.bean.UserBean.User;
+import com.aohuan.detail.mine.LoginActivity;
+import com.aohuan.detail.more.AboutUsActivity;
+import com.aohuan.detail.more.TechnicalAssistanceActivity;
+import com.aohuan.utils.common.LogAh;
+import com.aohuan.utils.dialog.CallPhoneUtils;
+import com.aohuan.utils.http.EFaceTypeZGQ;
+import com.aohuan.utils.http.GetDataAsyncZGQ;
+import com.aohuan.utils.http.IUpdateUI;
+import com.aohuan.utils.propriety.LoginHelper;
+import com.aohuan.utils.request.RequestBaseMapZGQ;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class Morefragment extends Fragment implements OnClickListener{
+	/** 关于我们 */
+	private RelativeLayout mLayoutAbout;
+	/** 版本更新 */
+	private RelativeLayout mLayoutVersion;
+	/** 版本信息 */
+	private TextView mTextVersion;
+	/** 技术支持 */
+	private RelativeLayout mLayoutJishu;
+	/** 客服电话 */
+	private RelativeLayout mLayoutKefu;
+	/** 电话号码 */
+	private TextView mTextPhone;
+	/** 退出登录 */
+	private Button mBtnExit;
+
+	/** 跳转页面 */
+	private Intent mIntent;
+	/** 版本信息的实体类 */
+	private VersionBean mVersionBean;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		View view=null;
+		view=inflater.inflate(R.layout.fragment_more, container, false);
+		return view;
+	}
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onActivityCreated(savedInstanceState);
+		initView();
+		initVersion();
+		initKefuData();
+	}
+
+	private void initView(){
+		mLayoutAbout = (RelativeLayout) getView().findViewById(R.id.about_us);
+		mLayoutVersion = (RelativeLayout) getView().findViewById(R.id.version_info);
+		mLayoutJishu = (RelativeLayout) getView().findViewById(R.id.tech_support);
+		mLayoutKefu = (RelativeLayout) getView().findViewById(R.id.kefu_telephone);
+		mTextPhone = (TextView) getView().findViewById(R.id.tv_phone);
+		mTextVersion = (TextView) getView().findViewById(R.id.version_hao);
+		mBtnExit = (Button) getView().findViewById(R.id.btn_exit);
+
+		mLayoutAbout.setOnClickListener(this);
+		mLayoutVersion.setOnClickListener(this);
+		mLayoutJishu.setOnClickListener(this);
+		mLayoutKefu.setOnClickListener(this);
+		mBtnExit.setOnClickListener(this);
+		
+	}
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		User user = LoginHelper.getUser(getActivity());
+		if (user == null) {
+			mBtnExit.setVisibility(View.GONE);
+		} else {
+			mBtnExit.setVisibility(View.VISIBLE);
+		}
+	}
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.about_us:
+			mIntent = new Intent(getActivity(), AboutUsActivity.class);
+			startActivity(mIntent);
+			break;
+		case R.id.version_info:
+			
+//			int oldVersion = Integer.parseInt(getVersionName().replace(".", ""));
+//			int newVersion = Integer.parseInt(mVersionBean.getNumber().replace(".", ""));
+//			if(oldVersion >= newVersion){
+//				Toast.makeText(getActivity(), "版本是最新"+oldVersion, Toast.LENGTH_SHORT).show();
+//			}else if(oldVersion < newVersion){
+//				CallPhoneUtils.showVersion(getActivity(), mVersionBean.getUrl());
+//				Toast.makeText(getActivity(), "有最新版本"+oldVersion, Toast.LENGTH_SHORT).show();
+//			}
+			break;
+		case R.id.tech_support:
+			mIntent = new Intent(getActivity(), TechnicalAssistanceActivity.class);
+			startActivity(mIntent);
+			break;
+		case R.id.kefu_telephone:
+			Intent intent = new Intent(Intent.ACTION_DIAL);
+			Uri data = Uri.parse("tel:" + mTextPhone.getText().toString());
+			intent.setData(data);
+			startActivity(intent);
+			break;
+		case R.id.btn_exit:
+			LoginHelper.logOut(getActivity());
+			mIntent = new Intent(getActivity(), LoginActivity.class);
+			startActivity(mIntent);
+			break;
+
+		default:
+			break;
+		}
+	}
+	/**
+	 * 客服电话
+	 */
+	private void initKefuData(){
+		IUpdateUI ui = new IUpdateUI() {
+
+			@Override
+			public void updata(Object allData) {
+				// TODO Auto-generated method stub
+				if(allData == null){
+					Toast.makeText(getActivity(), "网络不给力", Toast.LENGTH_SHORT).show();
+					return ;
+				}
+				LogAh.e("客服电话：："+allData.toString());
+				mTextPhone.setText(allData.toString());
+			}
+		};
+
+		GetDataAsyncZGQ asyncZGQ = new GetDataAsyncZGQ(getActivity(), ui, true, RequestBaseMapZGQ.getGuanggao());
+		asyncZGQ.execute(EFaceTypeZGQ.URL_KEFU_PHONE);
+	}
+	/**
+	 * 版本信息
+	 */
+	private void initVersion(){
+		IUpdateUI ui = new IUpdateUI() {
+
+			@Override
+			public void updata(Object allData) {
+				// TODO Auto-generated method stub
+				if(allData == null){
+					Toast.makeText(getActivity(), "网络不给力", Toast.LENGTH_SHORT).show();
+					return ;
+				}
+				LogAh.e("版本信息：："+allData.toString());
+				mVersionBean = (VersionBean) allData;
+				if(mVersionBean.getCode().equals("0")){
+					mTextVersion.setText(mVersionBean.getNumber());
+				}
+			}
+		};
+
+		GetDataAsyncZGQ asyncZGQ = new GetDataAsyncZGQ(getActivity(), ui, true,
+				RequestBaseMapZGQ.getGuanggao());
+		asyncZGQ.execute(EFaceTypeZGQ.URL_VERSION);
+	}
+	/**
+	 * 获取当前应用的版本号
+	 */
+	private String getVersionName(){  
+		// 获取packagemanager的实例  
+		PackageManager packageManager = getActivity().getPackageManager();  
+		// getPackageName()是你当前类的包名，0代表是获取版本信息  
+		PackageInfo packInfo;
+		String version = "";
+		try {
+			packInfo = packageManager.getPackageInfo("com.aohuan.babycomming",0);
+			version = packInfo.versionName;  
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return version;  
+	}  
+
+}

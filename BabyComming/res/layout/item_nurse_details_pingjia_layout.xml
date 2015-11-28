@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp" >
+
+        <TextView android:id="@+id/pingjia_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="用户cccc" />
+        <TextView android:id="@+id/pingjia_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="2015-01-09" />
+    </RelativeLayout>
+    <TextView  android:id="@+id/pingjia_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#c5c5c5"
+            android:textSize="13sp"
+            android:text="萨克大开杀戒ask积分卡斯克附近凯撒立即付款拉丝机反抗拉萨飞洒萨科的萨科联合反恐萨芬拉萨反抗拉萨" />
+
+</LinearLayout>

@@ -1,0 +1,42 @@
+package com.aohuan.utils.request;
+
+public class RequestBaseMapZGQ {
+
+	/** 广告 **/
+	public static BaseMap getGuanggao() {
+		BaseMap bm = new BaseMap();
+		return bm;
+	}
+	/** 月嫂列表 **/
+	public static BaseMap getYuesaoList(String grade, String city_id, String price) {
+		BaseMap bm = new BaseMap();
+		bm.put("grade", grade);
+		bm.put("city_id", city_id);
+		bm.put("price", price);
+		return bm;
+	}
+	/** 月嫂详情页 **/
+	public static BaseMap getYuesaoDetails(String ueserid, String yuesao_id) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("yuesao_id", yuesao_id);
+		return bm;
+	}
+	/** 月嫂收藏 **/
+	public static BaseMap getYuesaoCollect(String ueserid, String yuesao_id) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("yuesao_id", yuesao_id);
+		return bm;
+	}
+	/** 月嫂评价 **/
+	public static BaseMap getYuesaoPingjia(String ueserid, String yuesao_id,
+			String score, String details) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("yuesao_id", yuesao_id);
+		bm.put("score", score);
+		bm.put("details", details);
+		return bm;
+	}
+}

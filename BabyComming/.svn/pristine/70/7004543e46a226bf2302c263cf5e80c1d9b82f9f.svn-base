@@ -1,0 +1,140 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFEEF4" >
+
+    <include
+        android:id="@+id/select_linear"
+        layout="@layout/zgq_title_layout" />
+
+    <LinearLayout
+        android:id="@+id/ll01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_linear"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ToggleButton
+                android:id="@+id/tb_dengji"
+                android:layout_width="fill_parent"
+                android:layout_height="40.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.0"
+                android:background="@color/login_bg_color"
+                android:drawableRight="@drawable/togglebtn_back_selector"
+                android:gravity="center"
+                android:paddingRight="20.0dip"
+                android:singleLine="true"
+                android:textColor="@color/toggle_btn_text_color"
+                android:textOff="月嫂等级"
+                android:textOn="月嫂等级" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#cccccc" />
+            <ToggleButton
+                android:id="@+id/tb_quyu"
+                android:layout_width="fill_parent"
+                android:layout_height="40.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.0"
+                android:background="@color/login_bg_color"
+                android:drawableRight="@drawable/togglebtn_back_selector"
+                android:gravity="center"
+                android:paddingRight="20.0dip"
+                android:singleLine="true"
+                android:textColor="@color/toggle_btn_text_color"
+                android:textOff="区域"
+                android:textOn="区域" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#cccccc" />
+
+            <ToggleButton
+                android:id="@+id/tb_jiege"
+                android:layout_width="fill_parent"
+                android:layout_height="40.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.0"
+                android:background="@color/login_bg_color"
+                android:drawableRight="@drawable/togglebtn_back_selector"
+                android:gravity="center"
+                android:paddingRight="20.0dip"
+                android:singleLine="true"
+                android:textColor="@color/toggle_btn_text_color"
+                android:textOff="价格排序"
+                android:textOn="价格排序" />
+        </LinearLayout>
+        <View android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="#cccccc"/>
+    </LinearLayout>
+    <!--
+    <com.handmark.pulltorefresh.library.PullToRefreshListView 
+        android:scrollbars="none"
+        android:id="@+id/lv_house"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll01" />
+    -->
+
+  <!--     <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/lv_house"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll01"
+        android:scrollbars="none" />
+      android:layoutAnimation="@anim/layout_right_to_left_animation" -->
+      <GridView
+        android:id="@+id/gv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll01"
+        android:gravity="center"
+        android:horizontalSpacing="5dp"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:layout_margin="5dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dp"
+         />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll01"
+        android:background="#b0000000"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/lv_dengji"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll01"
+        android:background="#ffffff"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/lv_quyu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll01"
+        android:background="#ffffff"
+        android:visibility="gone" />
+    <ListView
+        android:id="@+id/lv_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll01"
+        android:background="#ffffff"
+        android:visibility="gone" />
+
+</RelativeLayout>

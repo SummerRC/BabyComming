@@ -1,0 +1,24 @@
+package com.aohuan.utils.propriety;
+
+import com.aohuan.bean.UserBean;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+
+public class LoginHelper {
+
+	public void saveLogin(Context mContext, String id, String username, String image){
+		SharedPreferences preferences = mContext.getSharedPreferences("userInfo", mContext.MODE_PRIVATE);
+		Editor editor = preferences.edit();
+		editor.putString("id", id);
+		editor.putString("username", username);
+		editor.putString("image", image);
+		editor.commit();
+	}
+	public UserBean getUser(Context mContext){
+		SharedPreferences preferences = mContext.getSharedPreferences("userInfo", mContext.MODE_PRIVATE);
+//		preferences.getString(key, defValue)
+		return null;
+	}
+}

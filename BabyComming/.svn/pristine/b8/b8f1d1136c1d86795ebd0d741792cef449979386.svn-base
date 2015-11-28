@@ -1,0 +1,65 @@
+package com.aohuan.detail.first.activity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.base.BaseActiviry;
+import com.aohuan.utils.viewpager_bili.SetWidthAndeHeightUtils;
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+@ContentView(R.layout.activity_goods_details_layout)
+public class GoodsDetailActivity extends BaseActiviry{
+	@ViewInject(R.id.back)
+	private ImageButton mBackButton;
+	@ViewInject(R.id.title)
+	private TextView mTextTitle;
+	@ViewInject(R.id.ib_collect)
+	private ImageButton mBtnCollect;
+	@ViewInject(R.id.goods_iv)
+	private ImageView mImage;
+	@ViewInject(R.id.rl_image_text_details)
+	private RelativeLayout mLayoutImageText;
+	
+	/** 跳转 */
+	private Intent mIntent;
+	/** 商品Id */
+	private String mGoodsId;
+	
+	@Override
+	protected void onCreate(Bundle arg0) {
+		// TODO Auto-generated method stub
+		super.onCreate(arg0);
+		initView();
+	}
+
+	private void initView(){
+		mGoodsId = getIntent().getStringExtra("goodsid");
+		mTextTitle.setText("精选商品详情页");
+		mBtnCollect.setVisibility(View.VISIBLE);
+		SetWidthAndeHeightUtils.setImageView(this, mImage, 3, 2);
+	}
+	
+	@OnClick({R.id.back, R.id.rl_image_text_details})
+	public void onClick(View view){
+		switch (view.getId()) {
+		case R.id.back:
+			finish();
+			break;
+		case R.id.rl_image_text_details:
+			mIntent = new Intent(GoodsDetailActivity.this, ImageTextDetailsActivity.class);
+			mIntent.putExtra("goodsid", mGoodsId);
+			startActivity(mIntent);
+			break;
+		default:
+			break;
+		}
+	}
+}

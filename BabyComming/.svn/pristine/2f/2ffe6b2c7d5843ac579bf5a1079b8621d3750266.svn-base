@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <ImageView android:id="@+id/yuesao_iv"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_default" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp" >
+
+        <TextView android:id="@+id/yuesao_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:text="周英丽" />
+
+        <TextView android:id="@+id/yuesao_dengji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="金牌月嫂" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView android:id="@+id/yuesao_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="48岁"
+            android:textColor="#cecece" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#C3C3C3" />
+
+        <TextView android:id="@+id/yuesao_quyu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="黑龙江"
+            android:textColor="#cecece" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#C3C3C3"
+            android:textColor="#cecece" />
+
+        <TextView android:id="@+id/yuesao_xueli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="高中"
+            android:textColor="#cecece" />
+    </LinearLayout>
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rating="0.1"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收费标准：" />
+
+        <TextView android:id="@+id/yuesao_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9800元/月"
+            android:textSize="10sp"
+            android:textColor="#918eff" />
+    </LinearLayout>
+
+</LinearLayout>

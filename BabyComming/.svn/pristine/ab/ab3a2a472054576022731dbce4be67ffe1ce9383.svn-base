@@ -1,0 +1,45 @@
+package com.aohuan.bean;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class GoodsListBean implements Serializable{
+	private String code;
+	private String message;
+	public ArrayList<GoodsList> list;
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public ArrayList<GoodsList> getList() {
+		return list;
+	}
+
+	public void setList(ArrayList<GoodsList> list) {
+		this.list = list;
+	}
+
+	@Override
+	public String toString() {
+		return "GoodsListBean [code=" + code + ", message=" + message
+				+ ", list=" + list + "]";
+	}
+
+	public class GoodsList implements Serializable{
+		
+	}
+
+}

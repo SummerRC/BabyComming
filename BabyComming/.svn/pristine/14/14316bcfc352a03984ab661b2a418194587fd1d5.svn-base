@@ -1,0 +1,43 @@
+package com.aohuan.detail.first.activity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.base.BaseActiviry;
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+/**
+ * 支付订单
+ * @author Administrator
+ *
+ */
+@ContentView(R.layout.activity_pay_order)
+public class PayOrderActivity extends BaseActiviry {
+	@ViewInject(R.id.back)
+	private ImageButton mBackButton;
+	@ViewInject(R.id.title)
+	private TextView mTitleView;
+	
+	@Override
+	protected void onCreate(Bundle arg0) {
+		// TODO Auto-generated method stub
+		super.onCreate(arg0);
+		mTitleView.setText("支付订单");
+	}
+	@OnClick({R.id.back})
+	public void onClick(View v){
+		switch (v.getId()) {
+		case R.id.back:
+			finish();
+			break;
+
+		default:
+			break;
+		}
+	}
+}

@@ -1,0 +1,90 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="my_tab_item">
+        		<item name="android:background">@null</item>
+                <item name="android:layout_height">wrap_content</item>
+                <item name="android:layout_weight">1</item>
+                <item name="android:button">@null</item>
+                <item name="android:width">0dp</item>
+                <item name="android:gravity">center</item>
+    </style>
+    
+    <style name="select_button">
+        <item name="android:button">@null</item>
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    
+    
+    
+   <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
+ 
+　　		<item name="android:progressDrawable">@drawable/rating_yellow</item>
+ 
+　　		<item name="android:minHeight">20dip</item>
+ 	
+　　		<item name="android:maxHeight">20dip</item>
+ 
+　　</style>
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+    <!-- title的高度和颜色 -->
+    <style name="title_bg">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@color/title_bg</item>
+    </style>
+
+    
+    <!-- 布局的样式 -->
+    <style name="linearlayoutbg">
+         <item name="android:background">@drawable/linearlayout_bg_red_transparent</item>
+    </style>
+    
+    <style name="setting_textview">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    
+    <!-- 摄影的背景选择器 -->
+    <style name="sheying_bg">
+         <item name="android:background">@drawable/shouye_sheying_bg</item>
+    </style>
+    <!-- zgq按钮的背景颜色和文字颜色（紫色背景白色字） -->
+    <style name="zgq_btn_textcolor_bg">
+         <item name="android:background">@drawable/zgq_btn_bg</item>
+         <item name="android:textColor">@drawable/zgq_btn_text_color</item>
+    </style>
+    <!-- zgq按钮的背景颜色和文字颜色（橙色背景白色字） -->
+    <style name="zgq_btn_bg_and_text_color">
+         <item name="android:background">@drawable/zgq_btn_bg_selector</item>
+         <item name="android:textColor">@drawable/zgq_btn_text_color_selector</item>
+    </style>
+    <!-- 单选按钮的选择器 -->
+     <style name="RadioButtonStyles">  
+        <item name="android:button">@drawable/radio_bg</item>  
+    </style>  
+    <!-- 去掉启动页的白色背景 -->
+    <style name="Theme.BackgroundTranslucent" parent="@android:Theme.Translucent">
+        <item name="android:windowBackground">@null</item>
+    </style>
+    
+</resources>

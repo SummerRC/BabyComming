@@ -1,0 +1,59 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+	
+     <FrameLayout
+        android:id="@+id/main_fragment_contain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >    
+    </FrameLayout>	
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+           <RadioGroup
+            android:gravity="center"
+            android:layout_weight="1"  
+            android:layout_width="0dp"  
+            android:orientation="horizontal"
+            android:id="@+id/radioGroup1"
+            android:layout_height="55dp" >
+
+            <RadioButton   
+                android:background="@drawable/main_tab_first"
+                android:id="@+id/main_tab_text"
+               	style="@style/my_tab_item"
+                 />
+
+            <RadioButton  
+                 android:background="@drawable/min_tab_order"             
+                android:id="@+id/main_tab_ptoto"
+              	style="@style/my_tab_item"       
+                />
+
+            <RadioButton    
+                 android:background="@drawable/main_tab_mine"  
+                android:id="@+id/main_tab_check"
+                style="@style/my_tab_item"
+                 />
+            <RadioButton  
+                 android:background="@drawable/main_tab_more"           
+                android:id="@+id/main_tab_activity"
+              	style="@style/my_tab_item"
+                 />
+            <RadioButton        
+                android:id="@+id/main_tab_my"
+              	style="@style/my_tab_item"
+                 />
+        </RadioGroup>
+        
+    </LinearLayout>
+     
+
+</LinearLayout>

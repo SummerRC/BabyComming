@@ -1,0 +1,129 @@
+package com.aohuan.utils.request;
+
+public class RequestBaseMapZGQ {
+
+	/** 广告 **/
+	public static BaseMap getGuanggao() {
+		BaseMap bm = new BaseMap();
+		return bm;
+	}
+	/** 商列表 **/
+	public static BaseMap getGoodsList(String page) {
+		BaseMap bm = new BaseMap();
+		bm.put("page", page);
+		return bm;
+	}
+	/** 月嫂列表 **/
+	public static BaseMap getYuesaoList(String grade, String city_id, String price, String page) {
+		BaseMap bm = new BaseMap();
+		bm.put("grade", grade);
+		bm.put("city_id", city_id);
+		bm.put("price", price);
+		bm.put("page", page);
+		return bm;
+	}
+	/** 月嫂详情页 **/
+	public static BaseMap getYuesaoDetails(String ueserid, String yuesao_id, String page) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("yuesao_id", yuesao_id);
+		bm.put("page", page);
+		return bm;
+	}
+	/** 月嫂收藏 **/
+	public static BaseMap getYuesaoCollect(String ueserid, String yuesao_id) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("yuesao_id", yuesao_id);
+		
+		return bm;
+	}
+	/** 月嫂评价 **/
+	public static BaseMap getYuesaoPingjia(String ueserid, String yuesao_id,
+			String score, String details) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("yuesao_id", yuesao_id);
+		bm.put("score", score);
+		bm.put("details", details);
+		return bm;
+	}
+	/** 预约月嫂 **/
+	public static BaseMap getYuesaoOrder(String ueserid, String yuesao_id,
+			String pay_id, String ding_price, String mobile, String address,
+			String realname) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("yuesao_id", yuesao_id);
+		bm.put("pay_id", pay_id);
+		bm.put("ding_price", ding_price);
+		bm.put("mobile", mobile);
+		bm.put("address", address);
+		bm.put("realname", realname);
+		return bm;
+	}
+	/** 月嫂公司 **/
+	public static BaseMap getYuesaoParents(String id, String page) {
+		BaseMap bm = new BaseMap();
+		bm.put("partner_id", id);
+		bm.put("page", page);
+		return bm;
+	}
+	/** 商品详情 **/
+	public static BaseMap getGoodsDetails(String ueserid,String id) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("team_id", id);
+		return bm;
+	}
+	/** 月嫂收藏 **/
+	public static BaseMap getGoodsCollect(String ueserid, String team_id) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("team_id", team_id);
+		return bm;
+	}
+	/** 我的订单 **/
+	public static BaseMap getMyOrder(String ueserid) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		return bm;
+	}
+	/** 订单详情 **/
+	public static BaseMap getMyOrderDetails(String ueserid, String id) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("order_id", id);
+		return bm;
+	}
+	/** 订单评价 **/
+	public static BaseMap getMyOrderPingjia(String ueserid, String details,
+			String score, String order_id) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("details", details);
+		bm.put("score", score);
+		bm.put("order_id", order_id);
+		return bm;
+	}
+	/** 删除待付款订单 **/
+	public static BaseMap getDeleteMyOrder(String ueserid, String order_id) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("order_id", order_id);
+		return bm;
+	}
+	/** 修改用户图片 **/
+	public static BaseMap getUpdateImage(String ueserid, String image) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		bm.put("image", image);
+		return bm;
+	}
+	/** 刷新用户信息 **/
+	public static BaseMap getUpdateImage(String ueserid) {
+		BaseMap bm = new BaseMap();
+		bm.put("user_id", ueserid);
+		return bm;
+	}
+}

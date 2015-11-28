@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFEEF3" >
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/common_title" />
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff" >
+
+                <ImageView
+                    android:id="@+id/tao_can_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                   	android:background="@drawable/ic_default2"/>
+
+                <TextView
+                    android:id="@+id/tao_can_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tao_can_image"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:text="幸福baby特价套餐"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tao_can_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tao_can_name"
+                    android:layout_below="@+id/tao_can_name"
+                    android:layout_marginTop="8dp"
+                    android:text="￥599.00"
+                    android:textColor="#918EFF"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tao_can_old_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tao_can_price"
+                    android:layout_below="@+id/tao_can_price"
+                    android:layout_marginTop="8dp"
+                    android:text="原价:"
+                    android:textColor="#D1D1D1"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tao_can_old_price2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tao_can_price"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/tao_can_old_price"
+                    android:text="1388.00"
+                    android:textColor="#D1D1D1"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tao_can_person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tao_can_price"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/tao_can_old_price2"
+                    android:text="36人已约"
+                    android:textColor="#D1D1D1"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/tao_can_get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignBottom="@+id/tao_can_person"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:background="#918eff"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:text="立即订购"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignLeft="@+id/tao_can_name"
+                    android:layout_alignRight="@+id/tao_can_get"
+                    android:layout_below="@+id/tao_can_get"
+                    android:layout_marginTop="10dp"
+                    android:background="#C3C3C3" />
+
+                <ImageView 
+                android:id="@+id/image_tron"
+                android:layout_alignLeft="@+id/tao_can_name"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_below="@+id/line"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/icon_tron"/>
+                 
+                <TextView
+                    android:id="@+id/tao_can_intro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/image_tron"
+                    android:layout_below="@+id/line"
+                    android:layout_marginTop="9dp"
+                    android:text="套餐介绍"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tao_can_intro_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/line"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_toRightOf="@+id/tao_can_intro"
+                    android:gravity="left"
+                    android:text="提供3组整体造型 
+8×8韩式一体-1(20张设计入册)
+16寸水晶版画-1(册内选)
+8寸水晶版画-1(册内选)
+宝宝卡-1(册内选)
+底片CD光盘-1(20张精选刻盘入册)"
+                    android:textColor="#D1D1D1" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/store_name_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#ffffff" >
+
+                <TextView
+                    android:id="@+id/store_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:text="商家名称"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/man_yi_digree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/store_name"
+                    android:layout_below="@+id/store_name"
+                    android:layout_marginTop="8dp"
+                    android:paddingBottom="6dp"
+                    android:text="满意度:"
+                    android:textColor="#D1D1D1" />
+
+                <RatingBar
+                    android:id="@+id/store_bar"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/store_name"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/store_name" />
+
+                <View
+                    android:id="@+id/line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignLeft="@+id/store_name"
+                    android:layout_below="@+id/man_yi_digree"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#C3C3C3" />
+
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/store_name"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"
+                    android:src="@drawable/ic_right_back" />
+
+               </RelativeLayout>
+               
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff" >
+                
+                
+               <ImageView 
+                android:id="@+id/image_address"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignTop="@+id/store_address"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/icon_address"/>
+                 
+                  <TextView
+                    android:id="@+id/store_address"
+                    android:layout_toRightOf="@+id/image_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="商家地址"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/sotre_address_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/store_address"
+                    android:lineSpacingExtra="4dp"
+                    android:lines="2"
+                    android:text="北京昌平区天通苑老一号8号楼底商(龙德广场东300米)"
+                    android:textColor="#C7BCBC" />
+
+                <View
+                    android:id="@+id/line3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                   android:layout_marginLeft="12dp"
+                    android:layout_below="@+id/sotre_address_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#C3C3C3" />
+            </RelativeLayout>
+            
+            
+            <RelativeLayout
+                android:id="@+id/customer_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff" >
+                
+                
+                <ImageView 
+                    
+                android:id="@+id/image_comment"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignTop="@+id/comment"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/icon_comment"/>
+                
+              <TextView
+                    android:id="@+id/comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/image_comment"
+                    android:layout_marginTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:textSize="18sp"
+                    android:text="顾客评价" />
+
+                <TextView
+                    android:id="@+id/comment_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:textSize="18sp"
+                    android:layout_toRightOf="@+id/comment"
+                    android:text="(65)" />
+                
+                
+                
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:src="@drawable/ic_right_back" />
+                
+            </RelativeLayout>
+            
+            
+             <RelativeLayout 
+                 android:id="@+id/photo_text_detail"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                >
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查看图文详情"
+                    android:padding="12dp"
+                    android:textSize="18sp"/>
+                
+                 <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_centerInParent="true"
+                    android:background="@null"
+                    android:src="@drawable/ic_right_back" />
+                
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

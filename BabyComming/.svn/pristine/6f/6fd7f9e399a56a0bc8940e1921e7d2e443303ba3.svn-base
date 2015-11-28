@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    
+    <ImageView 
+        android:id="@+id/store_image"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_default"/>
+    
+    <TextView 
+        
+        android:id="@+id/store_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="幸福泡泡幸福泡泡幸福泡泡"
+        android:textSize="16sp"
+        android:lines="1"
+        android:textColor="#333333"
+        android:layout_toRightOf="@+id/store_image"
+        android:layout_alignTop="@+id/store_image"/>
+	
+    <RatingBar 
+        android:id="@+id/store_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall" 
+        android:layout_below="@+id/store_title"
+        android:numStars="5"
+        android:minHeight="20dp"
+        android:maxHeight="20dp"
+        android:isIndicator="true"
+        android:layout_alignLeft="@+id/store_title"
+        android:layout_marginTop="15dp"/>
+	
+    <TextView 
+        android:id="@+id/store_person_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:textSize="14sp"
+         android:textColor="#BCBCBC"
+         android:text="410人已约"
+         android:paddingBottom="8dp"
+         android:layout_marginTop="8dp"
+         android:layout_alignLeft="@+id/store_title"
+         android:layout_below="@+id/store_bar"/>
+
+     <TextView 
+         android:id="@+id/store_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:textSize="14sp"
+         android:textColor="#B266FF"
+         android:text="均价:"
+         android:layout_marginLeft="7dp"
+         android:layout_marginTop="8dp"
+         android:layout_toRightOf="@+id/store_person_num"
+         android:layout_below="@+id/store_bar"/>
+    
+       <TextView 
+         android:id="@+id/price"
+       	 android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+         android:textSize="14sp"
+         android:textColor="#B266FF"
+         android:text="39835"
+         android:lines="1"
+         android:maxLength="5"
+         android:layout_marginLeft="3dp"
+         android:layout_marginTop="8dp"
+         android:layout_toRightOf="@+id/store_price"
+         android:layout_below="@+id/store_bar"/>
+       
+        <TextView 
+         android:id="@+id/yuan"
+       	 android:layout_width="wrap_content"
+       	 android:layout_height="wrap_content"
+         android:textSize="14sp"
+         android:textColor="#B266FF"
+         android:text="元"
+         android:lines="1"
+         android:layout_marginTop="8dp"
+         android:layout_toRightOf="@+id/price"
+         android:layout_below="@+id/store_bar"/>
+     
+</RelativeLayout>
+

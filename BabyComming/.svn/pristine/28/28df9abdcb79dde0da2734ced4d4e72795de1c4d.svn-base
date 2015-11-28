@@ -1,0 +1,50 @@
+package com.aohuan.detail.mine;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.utils.adapter.CommonAdapter;
+import com.aohuan.utils.adapter.ViewHolder;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridView;
+
+public class NotPaidFragment extends Fragment {
+
+	@ViewInject(R.id.paid_grid)
+	private GridView mGridView;
+	
+	private CommonAdapter<String> mAdapter;
+	private List<String> mList;
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = null;
+		view=inflater.inflate(R.layout.fragment_not_paid, container, false);
+		ViewUtils.inject(this, view);
+		
+		mList=new ArrayList<String>();
+		for (int i = 0; i < 10; i++) {
+			mList.add(""+i);
+		}	
+		
+		mAdapter=new CommonAdapter<String>(getActivity(), mList, R.layout.item_has_paid_yuesao) {
+
+			@Override
+			public void convert(ViewHolder helper, String item) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		mGridView.setAdapter(mAdapter);
+		return view;
+	}	 
+}

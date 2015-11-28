@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <ImageView
+        android:id="@+id/photo_goods_image"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_default" />
+
+    <TextView
+        android:id="@+id/photo_goods_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_below="@+id/photo_goods_image"
+       	android:layout_alignLeft="@+id/photo_goods_image"
+        android:layout_marginTop="5dp"
+        android:lines="1"
+        android:maxLength="10"
+        android:text="爱贝乐国际时尚儿童摄影" />
+
+    <TextView
+        android:id="@+id/photo_goods_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:lines="3"
+        android:layout_below="@+id/photo_goods_title"
+        android:layout_alignLeft="@+id/photo_goods_image"
+        android:layout_alignRight="@+id/photo_goods_image"
+        android:text="仅售398元!加载4998元的印象视觉儿童摄影套系，提供免费wifi"
+        android:textColor="#C7BCBC"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/photo_goods_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="￥398.00"
+        android:layout_below="@+id/photo_goods_content"
+        android:textColor="#9966FF" />
+
+   
+
+</RelativeLayout>

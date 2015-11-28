@@ -1,0 +1,30 @@
+package com.aohuan.utils.common;
+
+import android.util.Log;
+
+
+public class LogAh {
+	private LogAh() {
+		/* cannot be instantiated */
+		throw new UnsupportedOperationException("cannot be instantiated");
+	}
+	private static boolean isLog = true;
+	private static String tag = "--com.aohuan.babyComming--";
+	
+	public static  void i(String msg){
+		if(isLog) Log.i(tag, msg); 
+	}
+	
+	public static  void e(String msg){
+		if(isLog) Log.e(tag, msg); 
+	}
+	
+	public static void i(String category, String msg){
+		if(isLog) Log.i(tag+"_"+category, msg); 
+	}
+	
+	
+	public static void i_all(String msg){
+		if(isLog) Log.i(tag+"_all", msg);
+	}
+}

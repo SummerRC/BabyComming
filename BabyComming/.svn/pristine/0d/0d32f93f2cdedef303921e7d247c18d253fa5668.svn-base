@@ -1,0 +1,102 @@
+package com.aohuan.detail.mine;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.base.BaseActiviry;
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
+
+@ContentView(R.layout.activity_mine_had_yuesao)
+public class AlreadyReserveNurseMaidActivity extends BaseActiviry implements OnCheckedChangeListener{
+
+	@ViewInject(R.id.title)
+	private TextView mTitleView;
+	@ViewInject(R.id.back)
+	private ImageButton mBackButton;
+	@ViewInject(R.id.group)
+	private RadioGroup mGroup;
+	
+	private List<Fragment> mFragments;
+	
+	private RadioButton btn;
+	
+	 @Override
+	protected void onCreate(Bundle arg0) {
+		// TODO Auto-generated method stub
+		super.onCreate(arg0);
+		
+		mTitleView.setText("已预约的月嫂");
+		btn = (RadioButton) mGroup.getChildAt(0);
+		
+		mGroup.setOnCheckedChangeListener(this);
+		mFragments=new ArrayList<Fragment>();
+		
+		mFragments.add(new NotPaidFragment());
+		mFragments.add(new PaidFragment());
+		
+		if (!mFragments.get(0).isAdded()) {
+			Fragment fragment = mFragments.get(0);
+			FragmentManager manager = getSupportFragmentManager();
+			FragmentTransaction transaction = manager.beginTransaction();			
+			transaction.add(R.id.container, fragment);		
+			transaction.commit();
+		}
+		
+		mBackButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});		
+	}
+	 
+	 @Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if (!btn.isChecked()) {
+			btn.setChecked(true);
+		}
+	}
+	 
+	 @Override
+		public void onCheckedChanged(RadioGroup group, int checkedId) {
+			// TODO Auto-generated method stub
+
+			int childCount = group.getChildCount();
+
+			int checkedIndex = 0;
+			RadioButton btn = null;
+			for (int i = 0; i < childCount; i++) {
+				btn = (RadioButton) group.getChildAt(i);
+				if (btn.isChecked()) {
+					checkedIndex = i;
+					break;
+				}
+			}
+			Fragment fragment = mFragments.get(checkedIndex);
+
+			FragmentManager manager = getSupportFragmentManager();
+			FragmentTransaction transaction = manager.beginTransaction();
+			transaction.replace(R.id.container, fragment);
+			transaction.commit();
+
+		}
+	  
+}

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <include layout="@layout/common_title2"
+        android:id="@+id/header"/>
+    <ScrollView
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/store_image"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_default" />
+
+            <TextView
+                android:id="@+id/store_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/store_image"
+                android:layout_toRightOf="@+id/store_image"
+                android:lines="1"
+                android:text="幸福泡泡幸福泡泡幸福泡泡"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/store_title"
+                android:layout_below="@+id/store_title"
+                android:layout_marginTop="15dp"
+                android:text="满意度:" />
+
+            <RatingBar
+                android:id="@+id/store_bar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/store_title"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/text" />
+
+            <TextView
+                android:id="@+id/store_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/text"
+                android:layout_below="@+id/store_bar"
+                android:layout_marginTop="10dp"
+                android:text="销量:"
+                android:textColor="#BCBCBC"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/store_person_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/store_bar"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/store_num"
+                android:text="410"
+                android:textColor="#BCBCBC"
+                android:textSize="16sp" />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="0.1dp"
+                android:layout_height="25dp"
+                android:layout_below="@+id/store_bar"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@+id/store_person_num"
+                android:background="#000000" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/store_bar"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/line"
+                android:background="@null"
+                android:src="@drawable/ic_phone" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_below="@+id/store_image"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="12dp"
+                android:background="#E4E4E4" />
+
+            <ImageView 
+                android:id="@+id/image_tron"
+                android:layout_alignLeft="@+id/store_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                 android:layout_below="@+id/line2"
+                android:layout_alignTop="@+id/store_intro"
+                android:src="@drawable/icon_tron"/>
+            
+            <TextView
+                android:id="@+id/store_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/image_tron"
+                android:layout_below="@+id/line2"
+                android:layout_marginTop="5dp"
+                android:text="商家介绍" />
+
+            <TextView
+                android:id="@+id/sotre_intro_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line2"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/store_intro"
+                android:lineSpacingExtra="4dp"
+                android:lines="5"
+                android:text="淘宝网是亚太地区较大的网络零售商圈里巴巴集团在2003年5月10日投资创立。淘宝网现在业务跨越C2C（个人对个人）、B2C（商家对个人）两大部分。截止2010年12月31日，淘宝网注册会员超3.7亿人；2011年交易额为6100.8亿元，占中国网购市场80%的份额。比2010年增长66%。2012年11月11日，淘宝单日交易额191亿元。截止2013年3月31日的年度，淘宝网和天猫平台的交易额合计突破人民币10,000亿元"
+                android:textColor="#C7BCBC" />
+
+            <View
+                android:id="@+id/line3"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_below="@+id/sotre_intro_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#E4E4E4" />
+
+             <ImageView 
+                android:id="@+id/image_address"
+                android:layout_alignLeft="@+id/store_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                 android:layout_below="@+id/line3"
+                android:layout_alignTop="@+id/store_address"
+                android:src="@drawable/icon_address"/>
+            
+            <TextView
+                android:id="@+id/store_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/image_address"
+                android:layout_below="@+id/line3"
+                android:layout_marginTop="5dp"
+                android:text="商家地址" />
+
+            <TextView
+                android:id="@+id/sotre_address_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line3"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/store_address"
+                android:lineSpacingExtra="4dp"
+                android:lines="2"
+                android:text="北京昌平区天通苑老一号8号楼底商(龙德广场东300米)"
+                android:textColor="#C7BCBC" />
+
+            <View
+                android:id="@+id/line4"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_below="@+id/sotre_address_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#E4E4E4" />
+
+            <RelativeLayout
+                android:id="@+id/comment_rela"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line4" >
+
+                <ImageView 
+                    
+                android:id="@+id/image_comment"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignTop="@+id/comment"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/icon_comment"/>
+                
+                
+                <TextView
+                    android:id="@+id/comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/image_comment"
+                    android:layout_marginTop="10dp"
+                    android:text="顾客评价" />
+
+                <TextView
+                    android:id="@+id/comment_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/comment"
+                    android:text="(65)" />
+
+                <View
+                    android:id="@+id/line5"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_below="@+id/comment_num"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#E4E4E4" />
+
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="4dp"
+                    android:background="@null"
+                    android:src="@drawable/ic_right_back" />
+            </RelativeLayout>
+
+            <com.aohuan.view.NoScrollListView
+                android:background="#EFEEF4"
+                android:id="@+id/strore_detail_grid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/comment_rela"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:horizontalSpacing="5dp"
+                android:verticalSpacing="7dp"
+                android:numColumns="2" >
+            </com.aohuan.view.NoScrollListView>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

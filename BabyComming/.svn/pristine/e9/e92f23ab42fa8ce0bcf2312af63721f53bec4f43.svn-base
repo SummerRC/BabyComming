@@ -1,0 +1,7 @@
+package com.aohuan.detail.mine;
+
+import com.aohuan.base.BaseActiviry;
+
+public class MyCollectionActivity extends BaseActiviry{
+
+}

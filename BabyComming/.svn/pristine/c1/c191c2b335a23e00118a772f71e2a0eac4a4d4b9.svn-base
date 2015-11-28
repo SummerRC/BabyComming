@@ -1,0 +1,45 @@
+package com.aohuan.utils.http;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class UrlConstants {
+	
+	private  static Map<Integer , EFaceType> storeMap;
+	
+	private static Map<Integer, EFaceType> taoCanMap;
+	static{				
+		storeMap=new HashMap<Integer, EFaceType>();
+		storeMap.put(1, EFaceType.URL_PHOTOGRA_STORE);
+		storeMap.put(2, EFaceType.URL_CANFU_STORE);
+		storeMap.put(3, EFaceType.URL_TAIMAO_STORE);
+		
+		taoCanMap=new HashMap<Integer, EFaceType>();
+		taoCanMap.put(1, EFaceType.URL_PHOTOGRA_GOODS);
+		taoCanMap.put(2, EFaceType.URL_CANFU_TAOCAN);
+		taoCanMap.put(3, EFaceType.URL_TAIMAO_TAOCAN);
+				
+	}
+	
+	public  static EFaceType getStoreEFaceType(int type){
+		
+		return storeMap.get(type);	
+	}
+	
+	public static EFaceType getTaoCanEFaceType(int type){
+		
+		return taoCanMap.get(type);	
+	}
+	
+	
+	private UrlConstants() throws UnsupportedOperationException{
+		throw new UnsupportedOperationException("cannot be instantiated");
+	}
+	
+	public static final String URL = "http://baoer.com.h001.360sheji.cn/";
+	
+	//public static boolean ISLOGIN=false;
+	
+	public static String SELECT_DANGQIAN = "frag";
+}

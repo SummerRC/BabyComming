@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aohuan.babycomming"
+    android:versionCode="1"
+    android:versionName="1.0.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+    <!--添加可以向外拨打电话的权限  -->  
+    <uses-permission android:name="android.permission.CALL_PHONE"/>  
+    <!-- ###################声明SDK使用的相关权限###################### -->
+    <!-- 检测网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--
+    获取mac地址作为用户的备用唯一标识 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />     
+    <!-- 获取用户手机的IMEI，用来唯一的标识用户
+    -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 缓存资源优先存入SDcard -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许应用程序联网，以便向我们的服务器端发送数据 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.aohuan.babycomming.StartPageActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.BackgroundTranslucent" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 引导页 -->
+		<activity
+            android:name="com.aohuan.babycomming.ViewPagerActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 主页 -->
+		<activity
+            android:name="com.aohuan.babycomming.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 首页 -->
+        <activity
+            android:name="com.aohuan.detail.first.activity.PhotoGraphyActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity android:name="com.aohuan.detail.first.activity.StoreIntroActivity" >
+        </activity>
+        <activity android:name="com.aohuan.detail.first.activity.TaoCanDetailActivity" >
+        </activity>
+        <activity android:name="com.aohuan.detail.first.activity.PhotoTextDetailActivity" >
+        </activity>
+        <activity android:name="com.aohuan.detail.first.activity.CommentActivity" >
+        </activity>
+        <activity android:name="com.aohuan.detail.first.activity.SubmitOrderActivity" >
+        </activity>
+        <!-- 月嫂服务 -->
+        <activity
+            android:name="com.aohuan.detail.first.activity.NurseMaidActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 月嫂个人主页 -->
+        <activity
+            android:name="com.aohuan.detail.first.activity.NurseMaidPersonalActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.aohuan.detail.first.activity.NurseMaidPersonalTwoActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 预约月嫂 -->
+        <activity
+            android:name="com.aohuan.detail.first.activity.NurseMaidReserveActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 支付定金 -->
+        <activity
+            android:name="com.aohuan.detail.first.activity.NurseMaidPaymentActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 月嫂公司 -->
+        <activity
+            android:name="com.aohuan.detail.first.activity.NurseMaidCompanyActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 我要评价 -->
+        <activity
+            android:name="com.aohuan.detail.first.activity.NurseMaidEvaluateActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 精选商品 -->
+        <activity
+            android:name="com.aohuan.detail.first.activity.SelectGoodsActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 商品详情 -->
+        <activity
+            android:name="com.aohuan.detail.first.activity.GoodsDetailActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 查看图文详情 -->
+        <activity
+            android:name="com.aohuan.detail.first.activity.ImageTextDetailsActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 关于我们 -->
+        <activity
+            android:name="com.aohuan.detail.more.AboutUsActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 技术支持 -->
+        <activity
+            android:name="com.aohuan.detail.more.TechnicalAssistanceActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 设置密码保护 -->
+        <activity
+            android:name="com.aohuan.detail.mine.SetPasswordActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 修改密码 -->
+        <activity
+            android:name="com.aohuan.detail.mine.ChangePasswordActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 登陆 -->
+        <activity
+            android:name="com.aohuan.detail.mine.LoginActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 注册 -->
+        <activity
+            android:name="com.aohuan.detail.mine.RegisterActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        
+        
+        <activity android:name="com.aohuan.detail.first.activity.PayOrderActivity" >
+        </activity>
+        
+        <!-- 订单评价页 -->
+        <activity android:name="com.aohuan.detail.order.OrderDetailEvaluateActivity"/>
+        <!-- 订单详情  支付 -->
+        <activity android:name="com.aohuan.detail.order.OrderDetailNoPayActivity"/>
+        <!-- 订单详情  去评价 -->
+        <activity android:name="com.aohuan.detail.order.OrderDetailNoEvaluateActivity"/>
+        <!-- 订单详情  已评价 -->
+        <activity android:name="com.aohuan.detail.order.OrderDetailEvaluateDoneActivity"/>
+        <!-- 我的收藏 -->
+        <activity android:name="com.aohuan.detail.mine.MyCollectionActivity"/>
+        <!-- 找回密码 -->
+        <activity android:name="com.aohuan.detail.mine.FindBackActivity"/>
+        <!-- 已预约月嫂 -->
+        <activity android:name="com.aohuan.detail.mine.AlreadyReserveNurseMaidActivity"/>
+        <!-- 我关注的月嫂 -->
+        <activity android:name="com.aohuan.detail.mine.MyFocusNurseMaidActivity"/>
+        <!-- 注册协议 -->
+        <activity android:name="com.aohuan.detail.mine.RegistreXieyiActivity"/>
+        <activity android:name="com.aohuan.detail.mine.MyCollectGoodsActivity"></activity>
+        
+    </application>
+
+</manifest>

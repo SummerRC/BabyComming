@@ -1,0 +1,203 @@
+package com.aohuan.fragment;
+
+import java.util.ArrayList;
+
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.aohuan.adapter.OrderTypeAdapter;
+import com.aohuan.babycomming.R;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+public class OrderFragment extends Fragment {
+	@ViewInject(R.id.button_fanhui)
+	private Button mBtnBack;
+	@ViewInject(R.id.tab1)
+	private TextView mTv01All;
+	@ViewInject(R.id.tab2)
+	private TextView mTv02NoPay;
+	@ViewInject(R.id.tab3)
+	private TextView mTv03NoConsume;
+	@ViewInject(R.id.tab4)
+	private TextView mTv04NoEvaluate;
+	// @ViewInject(R.id.layout)
+	// private RelativeLayout mCursorLayout;
+	@ViewInject(R.id.cursor)
+	private ImageView mCursor;
+	@ViewInject(R.id.page)
+	private ViewPager mViewPager;
+
+	/** */
+	private ArrayList<View> fragments;
+
+	private int mTabNum = 4;
+	private int offset = 0;// 动画图片偏移量
+	private int currIndex = 0;// 当前页卡编号
+	private int bmpW;// 动画图片宽度
+	private int selectedColor;
+	private int unSelectedColor;
+//	private ArrayList<Fragment> fragments;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = null;
+		view = inflater.inflate(R.layout.fragment_order, container, false);
+		ViewUtils.inject(this, view);
+		initView();
+		return view;
+	}
+
+	private void initView() {
+		selectedColor = getResources()
+				.getColor(R.color.tab_title_pressed_color);
+		unSelectedColor = getResources().getColor(
+				R.color.tab_title_normal_color);
+		initImageView();
+		initTextView();
+		initViewPager();
+	}
+
+	private void initTextView() {
+		setSelectColor(0);
+		mTv01All.setOnClickListener(new MyOnClickListener(0));
+		mTv02NoPay.setOnClickListener(new MyOnClickListener(1));
+		mTv03NoConsume.setOnClickListener(new MyOnClickListener(2));
+		mTv04NoEvaluate.setOnClickListener(new MyOnClickListener(3));
+	}
+
+	private void initImageView() {
+		bmpW = BitmapFactory.decodeResource(getResources(),
+				R.drawable.bj_pageview).getWidth();
+		DisplayMetrics dm = new DisplayMetrics();
+		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+		int screenW = dm.widthPixels;
+		offset = (screenW / mTabNum - bmpW) / (mTabNum - 1); // （宽度/数量 -
+																// 宽度）/(数量-1)
+		Matrix matrix = new Matrix();
+		matrix.postTranslate(offset, 0);
+		mCursor.setImageMatrix(matrix);// 设置动画初始位置
+		// mCursor.setBackgroundResource(R.drawable.bj_pageview); // 图片
+		// mCursorLayout.setPadding(offset, 0, 0, 0);
+	}
+
+	OrderTypeAdapter mMyPagerAdapter;
+	private LayoutInflater mInflater;
+
+	private void initViewPager() {
+		mInflater = getActivity().getLayoutInflater();
+		fragments = new ArrayList<View>();
+		fragments.add(mInflater.inflate(R.layout.fragment_order_cursor_one, null));
+		fragments.add(mInflater.inflate(R.layout.fragment_order_cursor_two, null));
+		fragments.add(mInflater.inflate(R.layout.fragment_order_cursor_three, null));
+		fragments.add(mInflater.inflate(R.layout.fragment_order_cursor_four, null));
+		ArrayList<String> strList = new ArrayList<String>();
+		mMyPagerAdapter = new OrderTypeAdapter(fragments, strList,getActivity(),"");
+		mViewPager.setAdapter(mMyPagerAdapter);
+
+		mViewPager.setCurrentItem(0);
+		mViewPager.setOnPageChangeListener(new MyOnPageChangeListener());
+	}
+
+
+	@OnClick({ R.id.button_fanhui })
+	private void onViewClick(View v) {
+		switch (v.getId()) {
+		case R.id.button_fanhui:
+			Toast.makeText(getActivity(), "aa", Toast.LENGTH_SHORT).show();
+//			mMyPagerAdapter.refleshData(null);
+			ArrayList<String> strList = new ArrayList<String>();
+			strList.add("");
+			mMyPagerAdapter = new OrderTypeAdapter(fragments, strList,getActivity(),"");
+			mViewPager.setAdapter(mMyPagerAdapter);
+			break;
+
+		default:
+			break;
+		}
+	}
+
+
+	/**
+	 * 头标点击监听 设置 indicator 和 文字颜色
+	 */
+	private class MyOnClickListener implements OnClickListener {
+		private int index = 0;
+
+		public MyOnClickListener(int i) {
+			index = i;
+		}
+
+		public void onClick(View v) {
+			setSelectColor(index);
+			mViewPager.setCurrentItem(index);
+		}
+	}
+
+	/**
+	 * 为选项卡绑定监听器 设置 indicator 和 文字颜色
+	 */
+	public class MyOnPageChangeListener implements OnPageChangeListener {
+
+		int one = offset * 2 + bmpW;// 页卡1 -> 页卡2 偏移量
+		int two = one * 2;// 页卡1 -> 页卡3 偏移量
+
+		public void onPageScrollStateChanged(int index) {
+		}
+
+		public void onPageScrolled(int arg0, float arg1, int arg2) {
+		}
+
+		public void onPageSelected(int index) {
+			Animation animation = new TranslateAnimation(one * currIndex, one
+					* index, 0, 0);// 显然这个比较简洁，只有一行代码。
+			currIndex = index;
+			animation.setFillAfter(true);// True:图片停在动画结束位置
+			animation.setDuration(300);
+			mCursor.startAnimation(animation);
+			setSelectColor(index);
+		}
+	}
+
+	/** 设置文字的颜色 */
+	public void setSelectColor(int index) {
+		mTv01All.setTextColor(unSelectedColor);
+		mTv02NoPay.setTextColor(unSelectedColor);
+		mTv03NoConsume.setTextColor(unSelectedColor);
+		mTv04NoEvaluate.setTextColor(unSelectedColor);
+		switch (index) {
+		case 0:
+			mTv01All.setTextColor(selectedColor);
+			break;
+		case 1:
+			mTv02NoPay.setTextColor(selectedColor);
+			break;
+		case 2:
+			mTv03NoConsume.setTextColor(selectedColor);
+			break;
+		case 3:
+			mTv04NoEvaluate.setTextColor(selectedColor);
+			break;
+		default:
+			break;
+		}
+	}
+
+}

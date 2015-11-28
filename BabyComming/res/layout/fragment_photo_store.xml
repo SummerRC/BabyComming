@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2" >
+
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal" >
+
+        <ToggleButton
+            android:id="@+id/manyi_digree"
+            android:layout_width="0dp"
+            android:layout_height="40.0dip"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.0"
+            android:background="@color/login_bg_color"
+            android:drawableRight="@drawable/togglebtn_back_selector"
+            android:gravity="center"
+            android:paddingRight="20.0dip"
+            android:singleLine="true"
+            android:textColor="@color/toggle_btn_text_color"
+            android:textOff="满意度"
+            android:textOn="满意度" />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="40dp"
+            android:background="#cccccc" />
+
+        <ToggleButton
+            android:id="@+id/area"
+            android:layout_width="0dp"
+            android:layout_height="40.0dip"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.0"
+            android:background="@color/login_bg_color"
+            android:drawableRight="@drawable/togglebtn_back_selector"
+            android:gravity="center"
+            android:paddingRight="20.0dip"
+            android:singleLine="true"
+            android:textColor="@color/toggle_btn_text_color"
+            android:textOff="区域"
+            android:textOn="区域" />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="40dp"
+            android:background="#cccccc" />
+
+        <ToggleButton
+            android:id="@+id/price_order"
+            android:layout_width="0dp"
+            android:layout_height="40.0dip"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.0"
+            android:background="@color/login_bg_color"
+            android:drawableRight="@drawable/togglebtn_back_selector"
+            android:gravity="center"
+            android:paddingRight="20.0dip"
+            android:singleLine="true"
+            android:textColor="@color/toggle_btn_text_color"
+            android:textOff="价格排序"
+            android:textOn="价格排序" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@+id/top_bar"
+        android:background="#cccccc" />
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/store_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line"
+        android:background="#ffffff"
+        android:scrollbars="none" >
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+    
+    
+     <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_bar"
+        android:background="#b0000000"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/lv_dengji"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_bar"
+        android:background="#ffffff"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/lv_quyu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_bar"
+        android:background="#ffffff"
+        android:visibility="gone" />
+    <ListView
+        android:id="@+id/lv_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_bar"
+        android:background="#ffffff"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <TextView 
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:maxLength="20"
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:text="用户cckctj"/>
+    
+    <TextView 
+       android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+         android:textColor="#999999"
+        android:textSize="15sp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:text="2015-01-29"/>
+    
+    <TextView 
+        android:layout_below="@+id/username"
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:lineSpacingExtra="5dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#999999"
+        android:layout_alignLeft="@+id/username"
+        android:layout_alignRight="@+id/date"
+        android:text="今天忽然发现android项目中的文字排于混乱的原因了----半角字符与全角字符混乱所致！一般情况下，我们输入的数字、字母以及英文标点都是半角，所以占位无法确定。它们与汉字的占位大大的不同，由于这个原因，导致很多文字的排版都是参差不齐的。对此我找到了两种办法可以解决这个问题： "/>
+
+</RelativeLayout>

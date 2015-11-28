@@ -1,0 +1,82 @@
+package com.aohuan.detail.mine;
+
+import java.util.ArrayList;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.aohuan.base.BaseActiviry;
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.aohuan.babycomming.R;
+import com.aohuan.utils.adapter.CommonAdapter;
+import com.aohuan.utils.adapter.ViewHolder;
+
+
+@ContentView(R.layout.activity_mine_collection)
+public class MyCollectionActivity extends BaseActiviry{
+
+	@ViewInject(R.id.title)
+	private TextView mTvTitle;
+	@ViewInject(R.id.back)
+	private ImageButton mImgBtnBack;
+	
+	@ViewInject(R.id.ll_no_collection)
+	private RelativeLayout mRlNoData;
+	@ViewInject(R.id.mine_list)
+	private GridView mGridView;
+	
+	private ArrayList<String> mListString;
+	private CommonAdapter<String> mCommonAdapter;
+	
+	@Override
+	protected void onCreate(Bundle arg0) {
+		super.onCreate(arg0);
+		mTvTitle.setText("我的收藏");
+		mListString = new ArrayList<String>();
+		for(int i=0;i<20;i++){
+			mListString.add("aa");
+		}
+		doCommit();
+	}
+	
+	
+	private void setAdapter(){
+		mCommonAdapter = new CommonAdapter<String>(this, mListString, R.layout.item_mine_shou_cang) {
+			public void convert(ViewHolder helper, String item) {
+				helper.setText(R.id.tv_content, "item");
+			}
+		};
+		mGridView.setAdapter(mCommonAdapter);
+	}
+	
+	
+	private void doCommit(){
+		if(mListString!=null && mListString.size()>0){
+			mRlNoData.setVisibility(View.GONE);
+			mGridView.setVisibility(View.VISIBLE);
+			setAdapter();
+		}else{
+			mRlNoData.setVisibility(View.VISIBLE);
+			mGridView.setVisibility(View.GONE);
+		}
+	}
+	
+	
+	@OnClick({ R.id.back, })
+	public void onRlClick(View v) {
+		switch (v.getId()) {
+		case R.id.back:
+			finish();
+			break;
+		default:
+			break;
+		}
+	}
+	
+}

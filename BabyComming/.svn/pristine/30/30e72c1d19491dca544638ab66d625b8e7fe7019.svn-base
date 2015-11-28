@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDEDED"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        style="@style/title_bg"
+        android:background="#918eff"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="个人中心"
+        android:textColor="#ffffff"
+        android:textSize="22sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/vip_bg"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_touxiang"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/moren_heade" />
+
+                <com.aohuan.utils.bitmap.yuanimage.CircularImageView
+                    android:id="@+id/iv_circular_touxiang "
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="5dp"
+                    android:visibility="gone"
+                    android:src="@drawable/moren_heade" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/btn_mine_login"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="登录"
+                        android:visibility="visible"
+                        android:textColor="#9F6F34"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_mine_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="会员卡号:13432432"
+                        android:visibility="gone"
+                        android:textColor="#9F6F34"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+                
+            </LinearLayout>
+           </RelativeLayout>
+           
+            <!-- 我收藏的套餐 -->
+            <RelativeLayout
+                android:id="@+id/ll_my_shoucang"
+                style="@style/linearlayoutbg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_mine_fragment_star_empty"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="我收藏的套餐"
+                    style="@style/setting_textview" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/geren_jiantou"
+                    android:gravity="right" />
+            </RelativeLayout>
+            <!-- 我关注的月嫂 -->
+
+            <RelativeLayout
+                android:id="@+id/ll_my_yuesao"
+                style="@style/linearlayoutbg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_mine_fragment_person_female"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="我关注的月嫂"
+                    style="@style/setting_textview" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/geren_jiantou"
+                    android:gravity="right" />
+            </RelativeLayout>
+            <!-- 我收藏的商品 -->
+
+            <RelativeLayout
+                android:id="@+id/ll_my_shangpin"
+                style="@style/linearlayoutbg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:visibility="gone"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_mine_fragment_person_female"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="我收藏的商品"
+                    style="@style/setting_textview" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/geren_jiantou"
+                    android:gravity="right" />
+            </RelativeLayout>
+            <!-- 我预约的月嫂 -->
+
+            <RelativeLayout
+                android:id="@+id/ll_my_yuyue_yuesao"
+                style="@style/linearlayoutbg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_mine_fragment_person_female"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="我预约的月嫂"
+                    style="@style/setting_textview" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/geren_jiantou"
+                    android:gravity="right" />
+            </RelativeLayout>
+            <!-- 设置密码保护-->
+
+            <RelativeLayout
+                android:id="@+id/ll_password"
+                style="@style/linearlayoutbg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_mine_fragment_lock_empty"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="设置密码保护"
+                    style="@style/setting_textview" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/geren_jiantou"
+                    android:gravity="right" />
+            </RelativeLayout>
+            <!-- 修改密码 -->
+
+            <RelativeLayout
+                android:id="@+id/ll_change_pwd"
+                style="@style/linearlayoutbg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_mine_fragment_key_plus"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="修改密码"
+                    style="@style/setting_textview" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/geren_jiantou"
+                    android:gravity="right" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+package com.aohuan.utils.http;
+
+
+/**
+ * 
+ */
+public enum EFaceTypeZGQ {
+	/** 广告 */
+	URL_GUANGGAO(UrlConstants.URL+"App/webapp.php?action=ad"),
+	/** 客服电话 */
+	URL_KEFU_PHONE(UrlConstants.URL+"App/webapp.php?action=phone"),
+	/** 月嫂等级列表 */
+	URL_GRADE_LIST(UrlConstants.URL+"App/webapp.php?action=grade"),
+	/** 区域列表 */
+	URL_QUYU_LIST(UrlConstants.URL+"App/webapp.php?action=city"),
+	/** 月嫂列表 */
+	URL_YUESAO_LIST(UrlConstants.URL+"App/webapp.php?action=yuesao"),
+	/** 月嫂详情页 */
+	URL_YUESAO_DETAILS(UrlConstants.URL+"App/webapp.php?action=pay"),
+	;
+	
+	
+	
+	
+	private String urlAll;
+
+	private EFaceTypeZGQ(String url) {
+		this.urlAll = url;
+	}
+
+	public String getUrlAll() {
+		return urlAll;
+	}
+}
+

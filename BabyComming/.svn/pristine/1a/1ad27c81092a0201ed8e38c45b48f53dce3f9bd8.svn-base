@@ -1,0 +1,25 @@
+package com.aohuan.utils.request;
+
+
+
+
+
+public class RequestBaseMap {
+//	/** 注册 **/
+//	public static BaseMap getRegister(String remark, String passWord,
+//			String phone) {
+//		BaseMap bm = new BaseMap();
+//		bm.put("smscode", remark);
+//		bm.put("password", passWord);
+//		bm.put("mobile", phone);
+//		return bm;
+//	}
+	
+	public static BaseMap getTaoCanDetail(String team_id){
+		BaseMap bm = new BaseMap();
+		bm.put("team_id", team_id);
+		return bm;
+	}
+	
+	
+}

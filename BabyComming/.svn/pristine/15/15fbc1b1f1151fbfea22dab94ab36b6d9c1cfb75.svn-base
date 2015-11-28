@@ -1,0 +1,204 @@
+package com.aohuan.utils.http;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+
+import android.app.Activity;
+import android.os.AsyncTask;
+import android.util.Log;
+
+import com.aohuan.bean.BaseBean;
+import com.aohuan.bean.CommentBean;
+import com.aohuan.bean.PhotoGraGoodsBean;
+import com.aohuan.bean.PhotoGraStoreBean;
+import com.aohuan.bean.PhotoGraType;
+import com.aohuan.bean.StoreIntroDetailBean;
+import com.aohuan.bean.TaoCanDetailBean;
+import com.aohuan.utils.common.JsonUtil;
+import com.aohuan.utils.common.NetUtils;
+import com.aohuan.utils.loding.ProgressUtils;
+import com.aohuan.utils.request.BaseMap;
+
+
+public class GetDataAsync extends AsyncTask<EFaceType, Integer, Object> {
+	private Activity activity;
+	private IUpdateUI callback;
+	/** 是否显示加载框 */
+	private boolean isShowProgress = false;
+	/** 是否显示toast */
+	private boolean isShowToast = true;// false
+	private BaseMap requestMap;
+
+	String returnString;
+
+	 ProgressUtils pu = null;
+
+	public GetDataAsync(Activity activity, IUpdateUI callback,
+			boolean isShowProgress, BaseMap requestMap) {
+		this.activity = activity;
+		this.callback = callback;
+		this.isShowProgress = isShowProgress;
+		this.requestMap = requestMap;
+		 pu = new ProgressUtils();
+	}
+
+	@Override
+	protected void onPreExecute() {
+		if (isShowProgress) {
+			// Intent intent = new Intent();
+			// intent.setClass(activity, LoadingActivity.class);
+			// activity.startActivity(intent);
+
+			// WaitingDialog.CreatWaitingDialog(activity);
+		}
+		 pu.showDialog(activity);
+	}
+
+	@Override
+	protected void onPostExecute(Object result) {
+		 pu.dismissDialog();
+		if (!(result instanceof ExceptionType) && callback != null) {
+			callback.updata(result);
+
+		} else {
+			if (isShowToast) {
+				// ExceptionType et = (ExceptionType) result;
+				// switch (et) {
+				// case Exception:
+				// Toast.makeText(activity, "连网失败,请重试！E", Toast.LENGTH_SHORT)
+				// .show();
+				// break;
+				// case IOException:
+				// Toast.makeText(activity, "连网失败,请重试！I", Toast.LENGTH_SHORT)
+				// .show();
+				// break;
+				// case JsonMappingException:
+				// Toast.makeText(activity, "连网失败,请重试！JM", Toast.LENGTH_SHORT)
+				// .show();
+				// break;
+				// case JsonParseException:
+				// Toast.makeText(activity, "连网失败,请重试！JP", Toast.LENGTH_SHORT)
+				// .show();
+				// break;
+				// case NoNetworkException:
+				// Toast.makeText(activity, "连网失败,请重试！NE", Toast.LENGTH_SHORT)
+				// .show();
+				// break;
+				// default:
+				// break;
+			}
+			// }
+		}
+		// WaitingDialog.dismiss();
+	}
+
+	@Override
+	protected Object doInBackground(EFaceType... params) {
+		// ProgressUtils.dismissDialog();
+		if (!NetUtils.isConnected(activity))
+			return ExceptionType.NoNetworkException;
+
+		returnString = HttpUtil2.doPost(params[0].getUrlAll(),
+				getPairList(requestMap));
+
+		Log.e("---returnString-->", "----->" + returnString);
+
+		Object obj = null;
+		switch (params[0]) {
+			
+//		case URL_REGISTER:
+////			obj=parserClass(returnString, RegisterBean.class);
+//			break;	
+		case URL_PHOTOGRA_GOODS:
+					
+			obj=parserClass(returnString, PhotoGraGoodsBean.class);
+			break;
+		case URL_PHOTOGRA_STORE:
+			obj=parserClass(returnString, PhotoGraStoreBean.class);		
+			break;
+		case URL_TAOCAN_DETAIL:
+			obj=parserClass(returnString, TaoCanDetailBean.class);		
+			break;
+		case URL_STORE_DETAIL:
+			obj=parserClass(returnString, StoreIntroDetailBean.class);
+			break;
+			
+		case URL_CANFU_STORE:
+			obj=parserClass(returnString, PhotoGraStoreBean.class);
+			break;
+		case URL_CANFU_TAOCAN:
+			obj=parserClass(returnString, PhotoGraGoodsBean.class);
+			break;
+			
+		case URL_TAIMAO_STORE:
+			obj=parserClass(returnString, PhotoGraStoreBean.class);
+			break;
+			
+		case URL_TAIMAO_TAOCAN:
+			obj=parserClass(returnString, PhotoGraGoodsBean.class);
+			break;
+		case URL_COLLECT:
+			obj=parserClass(returnString, BaseBean.class);
+			break;
+		case URL_CUSTOMER_COMMENT:
+			obj=parserClass(returnString, CommentBean.class);			
+			break;
+		case URL_GET_ORDER:
+			
+			break;
+		case URL_PHOTOGRA_TYPE:
+			obj=parserClass(returnString, PhotoGraType.class);
+			break;
+		case URL_QUYU_CITY:
+			obj=parserClass(returnString, PhotoGraType.class);
+			break;
+		default:
+			break;
+		
+		}
+		return obj;
+	}
+
+	private static Object parserClass(String returnString, Class<?> classIn) {
+		try {
+			Object obj = JsonUtil.toObjectByJson(returnString, classIn);
+			return obj;
+		} catch (JsonParseException e) {
+			// e.printStackTrace();
+			return ExceptionType.JsonParseException;
+		} catch (JsonMappingException e) {
+			// e.printStackTrace();
+			return ExceptionType.JsonMappingException;
+		} catch (IOException e) {
+			// e.printStackTrace();
+			return ExceptionType.IOException;
+		} catch (Exception e) {
+			return ExceptionType.Exception;
+		}
+	}
+
+	private List<NameValuePair> getPairList(BaseMap bm) {
+		List<NameValuePair> paramList = new ArrayList<NameValuePair>();
+		if (null != bm) {
+			Iterator<String> iter = bm.getMap().keySet().iterator();
+			while (iter.hasNext()) {
+				String key = iter.next();
+				BasicNameValuePair param = new BasicNameValuePair(key,
+						bm.get(key));
+				paramList.add(param);
+			}
+		}
+		return paramList;
+	}
+
+	enum ExceptionType {
+		JsonParseException, JsonMappingException, IOException, Exception, NoNetworkException;
+	}
+}

@@ -1,0 +1,112 @@
+package com.aohuan.detail.mine;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.base.BaseActiviry;
+import com.aohuan.bean.YuesaoListBean;
+import com.aohuan.bean.YuesaoListBean.YuesaoList;
+import com.aohuan.utils.adapter.CommonAdapter;
+import com.aohuan.utils.adapter.ViewHolder;
+import com.aohuan.utils.http.EFaceType;
+import com.aohuan.utils.http.GetDataAsync;
+import com.aohuan.utils.http.IUpdateUI;
+import com.aohuan.utils.request.RequestBaseMap;
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+@ContentView(R.layout.activity_mine_collection)
+public class MyFocusNurseMaidActivity extends BaseActiviry {
+
+	@ViewInject(R.id.title)
+	private TextView mTvTitle;
+	@ViewInject(R.id.back)
+	private ImageButton mImgBtnBack;
+	
+	@ViewInject(R.id.ll_no_collection)
+	private RelativeLayout mRlNoData;
+	@ViewInject(R.id.mine_list)
+	private GridView mGridView;
+	
+	private List<YuesaoList> mListString;
+	private CommonAdapter<YuesaoList> mCommonAdapter;
+	
+	@Override
+	protected void onCreate(Bundle arg0) {
+		super.onCreate(arg0);
+		mTvTitle.setText("我的收藏");
+		mListString = new ArrayList<YuesaoList>();
+		
+		
+		
+		GetDataAsync gs=new GetDataAsync(this, new IUpdateUI() {
+			
+			@Override
+			public void updata(Object allData) {
+				// TODO Auto-generated method stub
+				if (allData !=null && allData instanceof YuesaoListBean) {
+					YuesaoListBean bean=(YuesaoListBean) allData;
+					if (bean.getCode().equals("0")) {
+						mListString=bean.getList();
+						doCommit();
+					}
+				}
+			}
+		}, false, RequestBaseMap.getCollect("3"));
+		gs.execute(EFaceType.URL_MY_FOCUS_YUESAO);
+	
+	}
+	
+	
+	private void setAdapter(){
+		mCommonAdapter = new CommonAdapter<YuesaoList>(this, mListString, R.layout.item_has_paid_yuesao) {
+			public void convert(ViewHolder helper, YuesaoList item) {
+				helper.setImageByUrl(R.id.yuesao_iv, item.getImage(), mContext);
+				helper.setText(R.id.yuesao_name, item.getName());
+				helper.setText(R.id.yuesao_dengji, item.getGrade());
+				helper.setText(R.id.yuesao_age, item.getAge());
+				helper.setText(R.id.yuesao_quyu, item.getLocation_city());
+				helper.setText(R.id.yuesao_xueli, item.getEducation());
+				helper.setText(R.id.yuesao_price, item.getPrice()+"元/月");
+				RatingBar rb = helper.getView(R.id.ratingBar);
+				rb.setRating(Float.parseFloat(item.getPingfen()));
+			}
+		};
+		mGridView.setAdapter(mCommonAdapter);
+	}
+	
+	
+	private void doCommit(){
+		if(mListString!=null && mListString.size()>0){
+			mRlNoData.setVisibility(View.GONE);
+			mGridView.setVisibility(View.VISIBLE);
+			setAdapter();
+		}else{
+			mRlNoData.setVisibility(View.VISIBLE);
+			mGridView.setVisibility(View.GONE);
+		}
+	}
+	
+	
+	@OnClick({ R.id.back })
+	public void onRlClick(View v) {
+		switch (v.getId()) {
+		case R.id.back:
+			finish();
+			break;
+		default:
+			break;
+		}
+	}
+
+}

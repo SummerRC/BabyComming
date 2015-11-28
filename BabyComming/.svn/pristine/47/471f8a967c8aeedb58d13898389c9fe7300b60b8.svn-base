@@ -1,0 +1,117 @@
+package com.aohuan.detail.first.activity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.base.BaseActiviry;
+import com.aohuan.bean.TaoCanDetailBean;
+import com.aohuan.utils.http.EFaceType;
+import com.aohuan.utils.http.GetDataAsync;
+import com.aohuan.utils.http.IUpdateUI;
+import com.aohuan.utils.request.RequestBaseMap;
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+/**
+ * 套餐详情
+ * 
+ * @author Administrator
+ * 
+ */
+@ContentView(R.layout.activity_taocan_detail)
+public class TaoCanDetailActivity extends BaseActiviry {
+	@ViewInject(R.id.store_name_detail)
+	private RelativeLayout mNameLayout;
+	@ViewInject(R.id.customer_comment)
+	private RelativeLayout mCommentLayout;
+	@ViewInject(R.id.photo_text_detail)
+	private RelativeLayout mPhotoLayout;
+	@ViewInject(R.id.back)
+	private ImageButton mBackButton;
+	@ViewInject(R.id.tao_can_get)
+	private Button mGetButton;
+	
+	private String team_id;
+	
+	@ViewInject(R.id.collect)
+	private ImageButton mCollectButton;
+	
+	@ViewInject(R.id.tao_can_name)
+	private TextView mTextView;
+	@ViewInject(R.id.tao_can_price)
+	private TextView mNowPriceView;
+	@ViewInject(R.id.tao_can_old_price2)
+	private TextView mOldPriceView;
+	@ViewInject(R.id.collect)
+	private TextView mSaleCountView;
+	@ViewInject(R.id.collect)
+	private TextView mIntroView;
+	@ViewInject(R.id.collect)
+	private TextView mTextView2;
+	@ViewInject(R.id.collect)
+	private TextView mAddressView;
+	@ViewInject(R.id.collect)
+	private TextView mCommentView;
+	
+
+	@Override
+	protected void onCreate(Bundle arg0) {
+		// TODO Auto-generated method stub
+		super.onCreate(arg0);
+		
+		team_id=getIntent().getStringExtra("team_id");
+		System.out.println("--team_id--"+team_id);
+		GetDataAsync gs=new GetDataAsync(this, new IUpdateUI() {
+			
+			@Override
+			public void updata(Object allData) {
+				// TODO Auto-generated method stub
+				if (allData !=null && allData instanceof TaoCanDetailBean) {
+					TaoCanDetailBean bean=(TaoCanDetailBean) allData;
+					if (bean.getCode()==0) {
+						
+					}
+				}
+			}
+		}, false, RequestBaseMap.getTaoCanDetail(team_id));
+		
+		gs.execute(EFaceType.URL_TAOCAN_DETAIL);
+	}
+
+	@OnClick({ R.id.store_name_detail, R.id.customer_comment,
+			R.id.photo_text_detail, R.id.back,R.id.tao_can_get })
+	public void onClick(View v) {
+		Intent intent;
+		switch (v.getId()) {
+		case R.id.store_name_detail:
+			 intent=new Intent(this, StoreIntroActivity.class);
+			startActivity(intent);
+			break;
+
+		case R.id.customer_comment:
+			intent=new Intent(this, CommentActivity.class);
+			startActivity(intent);			
+			break;
+			
+		case R.id.photo_text_detail:
+			intent=new Intent(this, PhotoTextDetailActivity.class);
+			startActivity(intent);
+			break;
+			
+		case R.id.back:
+			finish();
+			break;
+		case R.id.tao_can_get:
+			intent=new Intent(this, SubmitOrderActivity.class);
+			startActivity(intent);
+			break;
+		}
+	}
+}

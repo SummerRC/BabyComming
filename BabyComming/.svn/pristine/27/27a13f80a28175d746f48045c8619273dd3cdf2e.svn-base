@@ -1,0 +1,16 @@
+package com.aohuan.utils.http;
+
+
+public class UrlConstants {
+	
+	
+	private UrlConstants() throws UnsupportedOperationException{
+		throw new UnsupportedOperationException("cannot be instantiated");
+	}
+	
+	public static final String URL = "http://baoer.com.h001.360sheji.cn/";
+	
+	//public static boolean ISLOGIN=false;
+	
+	public static String SELECT_DANGQIAN = "frag";
+}

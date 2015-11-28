@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        style="@style/title_bg"
+        android:layout_width="fill_parent" >
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@null"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="#918eff"
+            android:text="注册"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top"
+        android:layout_margin="10dp"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/et_quest"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:maxLength="20"
+            android:hint="请输入6-20位数字和字母的组合" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#E4E4E4" />
+
+        <EditText
+            android:id="@+id/et_answer"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:maxLength="20"
+             android:inputType="textPassword"
+            android:hint="请输入6-20位的密码" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#E4E4E4" />
+
+        <EditText
+            android:id="@+id/et_answer_again"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:maxLength="20"
+             android:inputType="textPassword"
+            android:hint="确认您输入的6-20位的密码" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_commit"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/title_bg"
+        android:text="立即注册"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_mine_xieyi"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp" >
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/checkBox"
+            android:layout_alignBottom="@+id/checkBox"
+            android:layout_toRightOf="@+id/checkBox"
+            android:text="@string/register_agreement_name"
+            android:textColor="@color/blue"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:button="@drawable/chk_selector"
+            android:text="我已经阅读并且同意"
+            android:textColor="#000000" />
+    </RelativeLayout>
+
+</LinearLayout>

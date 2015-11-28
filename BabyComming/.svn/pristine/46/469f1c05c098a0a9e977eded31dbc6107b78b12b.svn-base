@@ -1,0 +1,84 @@
+package com.aohuan.fragment;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.aohuan.babycomming.R;
+import com.aohuan.detail.mine.ChangePasswordActivity;
+import com.aohuan.detail.mine.LoginActivity;
+import com.aohuan.detail.mine.SetPasswordActivity;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+public class MineFragment extends Fragment {
+
+	@ViewInject(R.id.btn_mine_login)
+	private Button mBtnLogin;
+	
+	@ViewInject(R.id.tv_mine_username)
+	private TextView mUsername;
+	
+	@ViewInject(R.id.ll_my_shoucang)
+	private RelativeLayout mRlShoucang;
+
+	@ViewInject(R.id.ll_my_yuesao)
+	private RelativeLayout mRlYuesao;
+
+	@ViewInject(R.id.ll_password)
+	private RelativeLayout mRlPassword;
+
+	@ViewInject(R.id.ll_change_pwd)
+	private RelativeLayout mRlChangePwd;
+	
+	/** mIntent */
+	private Intent mIntent;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = null;
+		view = inflater.inflate(R.layout.fragmen_mine, container, false);
+		ViewUtils.inject(this, view);
+		return view;
+	}
+
+	@OnClick({ R.id.btn_mine_login, R.id.tv_mine_username, R.id.ll_my_shoucang, R.id.ll_my_yuesao, R.id.ll_password,
+			R.id.ll_change_pwd })
+	public void onRlClick(View v) {
+		switch (v.getId()) {
+		case R.id.btn_mine_login:
+			mIntent = new Intent(getActivity(), LoginActivity.class);
+			startActivity(mIntent);
+			break;
+		case R.id.tv_mine_username:
+			break;
+		case R.id.ll_my_shoucang:
+			Toast.makeText(getActivity(), "11", Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.ll_my_yuesao:
+			Toast.makeText(getActivity(), "22", Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.ll_password:
+			mIntent = new Intent(getActivity(), SetPasswordActivity.class);
+			startActivity(mIntent);
+			break;
+		case R.id.ll_change_pwd:
+			mIntent = new Intent(getActivity(), ChangePasswordActivity.class);
+			startActivity(mIntent);
+			break;
+
+		default:
+			break;
+		}
+	}
+
+}
